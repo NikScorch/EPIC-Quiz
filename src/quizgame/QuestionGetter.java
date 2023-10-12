@@ -1,5 +1,8 @@
 package quizgame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuestionGetter {
     /*
      * Make an array of Question classes
@@ -44,40 +47,95 @@ public class QuestionGetter {
         new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.HARD),
     };
 
-    // public static void complete_random_game() {}
+    /**
+     * Retrieve an array of all available questions
+     * @return Question array of all loaded questions
+     */
+    public static Question[] getAllQuestions() {
+        return questions;
+    }
+
+    /**
+     * Get all questions that match the given parameters
+     * @param difficulty Find all questions that match the given difficulty
+     * @return Array of Question objects from the question bank
+     */
+    public static Question[] getAllQuestionsByFilter(Topic topic) {
+        return getAllQuestionsByFilter(topic, null);
+    }
+    /**
+     * Get all questions that match the given parameters
+     * @param difficulty Find all questions that match the given difficulty
+     * @return Array of Question objects from the question bank
+     */
+    public static Question[] getAllQuestionsByFilter(Difficulty difficulty) {
+        return getAllQuestionsByFilter(null, difficulty);
+    }
+    /**
+     * Get all questions that match the given parameters
+     * @param topic Find all questions that match the given subject
+     * @param difficulty Filter for only a specific difficulty of those subject questions
+     * @return Array of Question objects from the question bank
+     */
+    public static Question[] getAllQuestionsByFilter(Topic topic, Difficulty difficulty) {
+        List<Question> filteredQuestions = new ArrayList<Question>();
+        for (Question q: questions) {
+            if ((q.topic == topic || topic == null) && (q.difficulty == difficulty || difficulty == null)) {
+                filteredQuestions.add(q);
+            }
+        }
+        // Convert ArrayList to Array
+        Question[] filteredQuestionsArray = filteredQuestions.toArray(new Question[filteredQuestions.size()]);
+        return filteredQuestionsArray;
+    }
+
+    /**
+     * Get single random question from the entire question bank
+     * @return
+     */
     public static Question getRandomQuestion() {
         return questions[(int) (Math.random() * questions.length)];
     }
 
-    // public static void specific_subject_random_game(Topic topic) {}
-    public static Question getRandomQuestionBySubject(Topic topic) {
-        int questionsForTopic = 0;
-        for (Question q: questions) {
-            if (q.topic == topic) {
-                questionsForTopic++;
-            }
-        }
-
-        int randomQuestionIndex = (int) Math.random() * (questionsForTopic + 1);
-        int i = 0;
-        for (Question q: questions) {
-            if (q.topic != topic) {
-                continue;
-            }
-            
-        }
-
-        return questions[0];
+    /**
+     * Method filters and returns all questions within given topic
+     * @param topic Subject enum to filter by
+     * @return Returns a random Question given a filter
+     */
+    public static Question getRandomQuestionByFilter(Topic topic) {
+        return getRandomQuestionByFilter(topic, null);
+    }
+    /**
+     * Method filters and returns all questions within given difficulty 
+     * @param difficulty Difficulty enum to filter by
+     * @return Returns a random Question given a filter
+     */
+    public static Question getRandomQuestionByFilter(Difficulty difficulty) {
+        return getRandomQuestionByFilter(null, difficulty);
+    }
+    /**
+     * Method filters and returns all questions within given requirements
+     * @param topic Subject enum to filter by
+     * @param difficulty Difficulty enum to filter by
+     * @return Returns a random Question given a filter
+     */
+    public static Question getRandomQuestionByFilter(Topic topic, Difficulty difficulty) {
+        Question[] filterQuestions = getAllQuestionsByFilter(topic, difficulty);
+        return filterQuestions[(int) (Math.random() * (filterQuestions.length + 1))];
     }
 
-    public static Question getRandomQuestionBySubjectAndDifficulty(Topic topic, Difficulty difficulty) { return questions[0]; }
-    
-    public static void increasing_difficulty_game() {}
-
+    // This main function should never be run in production
+    // It is for debug purposes only
     public static void main(String[] args) {
         //specific_subject_random_game(Topic.COMPUTER_SCIENCE);
         getRandomQuestion();
 
+        Question q = new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.COMP_ORG, Difficulty.EASY);
+        q.print();
+
+        Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
+        System.out.println(java.util.Arrays.toString(qs));
+        System.out.println(qs.length);
 
 
     }
@@ -107,6 +165,10 @@ class Question {
         this.topic = topic;
         this.difficulty = difficulty;
     }
+
+    public void print() {
+        System.out.println(this.question + "\t\t" + this.answers[this.answerIndex] + "\t\tTopic " + this.topic + "\t\tDifficulty " + this.difficulty);
+    }
 }
 
 /** Indicator for the topic of a question */
@@ -115,9 +177,45 @@ enum Topic {
     COMP_ORG,
     COMPUTER_SCIENCE
 }
+
 /** Indicator for the difficulty of a question */
 enum Difficulty {
     EASY,
     MEDIUM,
-    HARD
+    HARD;
+
+    /**
+     * Example: myDifficulty = myDifficulty.increaseDifficulty();
+     * // Increase the difficulty of the enum, does not exceed HARD.
+     * @return New Difficulty Enum
+     */
+    public Difficulty increaseDifficulty() {
+        switch (this) {
+            case EASY:
+                return MEDIUM;
+            case MEDIUM:
+                return HARD;
+            case HARD:
+                return HARD;
+            default:
+                throw new IllegalStateException();
+        }
+    }
+    /**
+     * Example: myDifficulty = myDifficulty.decreaseDifficulty();
+     * // Decrease the difficulty of the enum, does not go below EASY.
+     * @return New Difficulty Enum
+     */
+    public Difficulty decreaseDifficulty() {
+        switch (this) {
+            case EASY:
+                return EASY;
+            case MEDIUM:
+                return EASY;
+            case HARD:
+                return MEDIUM;
+            default:
+                throw new IllegalStateException();
+        }
+    }
 }

@@ -2,7 +2,7 @@ package quizgame;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import javax.swing.JOptionPane; 
+//import javax.swing.JOptionPane;
 
 public class User {
     //Establishing variables

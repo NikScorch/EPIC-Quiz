@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.epicprojectreal.DifficultyScreen">
+<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.switchSceneController">
     <children>
         <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: #c665b1;" />
         <Label alignment="CENTER" layoutY="127.0" prefHeight="50.0" prefWidth="691.0" text="Choose subject" textFill="#7b3c98">
@@ -28,12 +28,12 @@
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="424.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+        <Button layoutX="202.0" layoutY="424.0" mnemonicParsing="false" onAction="#switchToInstructions" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="585.0" layoutY="489.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="91.0" style="-fx-background-color: #f8ecf8;" text="Back" textFill="#c665b1">
+        <Button layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToDifficulty" prefHeight="20.0" prefWidth="91.0" style="-fx-background-color: #f8ecf8;" text="Back" textFill="#c665b1">
             <font>
                 <Font size="16.0" />
             </font>

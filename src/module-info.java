@@ -7,4 +7,6 @@ module EPIC.Quiz {
 
     opens quizgame to javafx.fxml;
     exports quizgame;
+    //exports quizgame.resource;
+    opens quizgame.resource to javafx.fxml;
 }

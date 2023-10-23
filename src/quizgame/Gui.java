@@ -17,6 +17,7 @@ public class Gui extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
 
     }
 

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Built-By: Cormac Shannon
+Build-Jdk: 17.0.8
+Main-Class: quizgame.Main

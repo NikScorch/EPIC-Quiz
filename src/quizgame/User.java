@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //import javax.swing.JOptionPane;
 
 public class User {
-    //Establishing variables
+    // Establishing variables
     int score = 0;
     int inputedAnswer;
     int mathsScore = 0;
@@ -17,56 +17,45 @@ public class User {
     Question[] answeredQuestions = new Question[6];
     Difficulty difficulty = Difficulty.EASY;
 
-
-
-    //test area
+    // test area
     public static void main(String[] args) {
         user();
 
     }
 
-
-
-
-    //calculating the overall score of the test
+    // calculating the overall score of the test
     public int score(Question q) {
-        for(int i=0;i<=6;i++){
-            //if (inputedAnswer.equals(Question.correctAnswerIndex[i])) {
+        for (int i = 0; i <= 6; i++) {
+            // if (inputedAnswer.equals(Question.correctAnswerIndex[i])) {
             if (inputedAnswer == q.answerIndex) {
-            System.out.println("Correct answer!");
-            score++;
-            }
-            else {
-            System.out.println("Incorrect answer!");
+                System.out.println("Correct answer!");
+                score++;
+            } else {
+                System.out.println("Incorrect answer!");
             }
 
         }
-        
+
         return score;
     }
 
-
-
-
-
-    //calculating the score for maths specifically 
+    // calculating the score for maths specifically
     public int scoreForDiscreteMaths() {
-         for (Question q: answeredQuestions) {
-             // If the given question is NOT a discrete maths question
-             // Skip the question, and try another one
-             if (q.topic != Topic.DISCRETE_MATHS) {
-                 continue;
-                }
-             // If it is a discrete maths Q, increase the maths score
-             mathsScore++;
+        for (Question q : answeredQuestions) {
+            // If the given question is NOT a discrete maths question
+            // Skip the question, and try another one
+            if (q.topic != Topic.DISCRETE_MATHS) {
+                continue;
             }
+            // If it is a discrete maths Q, increase the maths score
+            mathsScore++;
+        }
         return mathsScore;
     }
 
-
-    //calculating the score for comp Org specifically
+    // calculating the score for comp Org specifically
     public int scoreForCompOrg() {
-        for (Question q: answeredQuestions) {
+        for (Question q : answeredQuestions) {
             if (q.topic != Topic.COMP_ORG) {
                 continue;
             }
@@ -75,11 +64,9 @@ public class User {
         return compOrgScore;
     }
 
-
-
-    //calculating the score for cs spcifically
+    // calculating the score for cs spcifically
     public int scoreForCompScicence() {
-        for (Question q: answeredQuestions) {
+        for (Question q : answeredQuestions) {
             if (q.topic != Topic.COMPUTER_SCIENCE) {
                 continue;
             }
@@ -88,14 +75,10 @@ public class User {
         return compSciScore;
     }
 
-
-
-
-
-    //calculating the score for easy questions
+    // calculating the score for easy questions
     public int scoreForEasy() {
-        for (Question q: answeredQuestions) {
-            if (q.difficulty != Difficulty.EASY ) {
+        for (Question q : answeredQuestions) {
+            if (q.difficulty != Difficulty.EASY) {
                 continue;
             }
             easyScore++;
@@ -104,11 +87,10 @@ public class User {
 
     }
 
-
-    //calcualting the score for medium questions
+    // calcualting the score for medium questions
     public int scoreForMedium() {
-         for (Question q: answeredQuestions) {
-            if (q.difficulty != Difficulty.MEDIUM ) {
+        for (Question q : answeredQuestions) {
+            if (q.difficulty != Difficulty.MEDIUM) {
                 continue;
             }
             mediumScore++;
@@ -116,11 +98,10 @@ public class User {
         return mediumScore;
     }
 
-
-    //calcualting the score for hard questions
+    // calcualting the score for hard questions
     public int scoreForHard() {
-         for (Question q: answeredQuestions) {
-            if (q.difficulty != Difficulty.HARD ) {
+        for (Question q : answeredQuestions) {
+            if (q.difficulty != Difficulty.HARD) {
                 continue;
             }
             hardScore++;
@@ -128,10 +109,7 @@ public class User {
         return hardScore;
     }
 
-
-
-
-    //creating the login interface 
+    // creating the login interface
     public static void user() {
         Scanner scanner = new Scanner(System.in);
         String username;
@@ -144,33 +122,22 @@ public class User {
             System.out.println("Enter Username: ");
             username = scanner.nextLine();
             scanner.nextLine();
-            
+
             System.out.println("Enter Password: ");
             password = scanner.nextLine();
             System.out.println("Welcome " + username);
-            }
-        else if (entry == 2) {
-             System.out.println("Enter Username: ");
+        } else if (entry == 2) {
+            System.out.println("Enter Username: ");
             username = scanner.nextLine();
             scanner.nextLine();
             System.out.println("Enter Password: ");
             password = scanner.nextLine();
-        }
-        else {
+        } else {
             System.out.println("invalid entry. Please try again");
-            
+
         }
 
-        
         scanner.close();
-
-    }
-
-
-
-    //increasing or decreasing the difficulty after each question
-    public void difficultyLevel() {
-       
 
     }
 

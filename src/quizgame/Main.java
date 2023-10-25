@@ -4,106 +4,155 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-// import java.nio.file.Path;
-// import java.nio.file.Files;
 
 public class Main {
     public static void main(String[] args) {
         loadDll();
+        extractFile("/data/questions.csv");
         quizgame.Gui.main(args);
     }
 
     public static void loadDll() {
         // List of DLL files to load
         String[] dllFiles = {
-            "/api-ms-win-core-console-l1-1-0.dll",
-            "/api-ms-win-core-console-l1-2-0.dll",
-            "/api-ms-win-core-datetime-l1-1-0.dll",
-            "/api-ms-win-core-debug-l1-1-0.dll",
-            "/api-ms-win-core-errorhandling-l1-1-0.dll",
-            "/api-ms-win-core-file-l1-1-0.dll",
-            "/api-ms-win-core-file-l1-2-0.dll",
-            "/api-ms-win-core-file-l2-1-0.dll",
-            "/api-ms-win-core-handle-l1-1-0.dll",
-            "/api-ms-win-core-heap-l1-1-0.dll",
-            "/api-ms-win-core-interlocked-l1-1-0.dll",
-            "/api-ms-win-core-libraryloader-l1-1-0.dll",
-            "/api-ms-win-core-localization-l1-2-0.dll",
-            "/api-ms-win-core-memory-l1-1-0.dll",
-            "/api-ms-win-core-namedpipe-l1-1-0.dll",
-            "/api-ms-win-core-processenvironment-l1-1-0.dll",
-            "/api-ms-win-core-processthreads-l1-1-0.dll",
-            "/api-ms-win-core-processthreads-l1-1-1.dll",
-            "/api-ms-win-core-profile-l1-1-0.dll",
-            "/api-ms-win-core-rtlsupport-l1-1-0.dll",
-            "/api-ms-win-core-string-l1-1-0.dll",
-            "/api-ms-win-core-synch-l1-1-0.dll",
-            "/api-ms-win-core-synch-l1-2-0.dll",
-            "/api-ms-win-core-sysinfo-l1-1-0.dll",
-            "/api-ms-win-core-timezone-l1-1-0.dll",
-            "/api-ms-win-core-util-l1-1-0.dll",
-            "/api-ms-win-crt-conio-l1-1-0.dll",
-            "/api-ms-win-crt-convert-l1-1-0.dll",
-            "/api-ms-win-crt-environment-l1-1-0.dll",
-            "/api-ms-win-crt-filesystem-l1-1-0.dll",
-            "/api-ms-win-crt-heap-l1-1-0.dll",
-            "/api-ms-win-crt-locale-l1-1-0.dll",
-            "/api-ms-win-crt-math-l1-1-0.dll",
-            "/api-ms-win-crt-multibyte-l1-1-0.dll",
-            "/api-ms-win-crt-private-l1-1-0.dll",
-            "/api-ms-win-crt-process-l1-1-0.dll",
-            "/api-ms-win-crt-runtime-l1-1-0.dll",
-            "/api-ms-win-crt-stdio-l1-1-0.dll",
-            "/api-ms-win-crt-string-l1-1-0.dll",
-            "/api-ms-win-crt-time-l1-1-0.dll",
-            "/api-ms-win-crt-utility-l1-1-0.dll",
-            "/decora_sse.dll",
-            "/glass.dll",
-            "/glib-lite.dll",
-            "/gstreamer-lite.dll",
-            "/javafx_font.dll",
-            "/javafx_iio.dll",
-            "/jfxmedia.dll",
-//            "/jfxwebkit.dll",
-            "/msvcp140.dll",
-            "/msvcp140_1.dll",
-            "/msvcp140_2.dll",
-            "/prism_common.dll",
-            "/prism_d3d.dll",
-            "/prism_sw.dll",
-            "/ucrtbase.dll",
-            "/vcruntime140.dll",
-            "/vcruntime140_1.dll",
-            "/fxplugins.dll",
+            "/bin/api-ms-win-core-console-l1-1-0.dll",
+            "/bin/api-ms-win-core-console-l1-2-0.dll",
+            "/bin/api-ms-win-core-datetime-l1-1-0.dll",
+            "/bin/api-ms-win-core-debug-l1-1-0.dll",
+            "/bin/api-ms-win-core-errorhandling-l1-1-0.dll",
+            "/bin/api-ms-win-core-file-l1-1-0.dll",
+            "/bin/api-ms-win-core-file-l1-2-0.dll",
+            "/bin/api-ms-win-core-file-l2-1-0.dll",
+            "/bin/api-ms-win-core-handle-l1-1-0.dll",
+            "/bin/api-ms-win-core-heap-l1-1-0.dll",
+            "/bin/api-ms-win-core-interlocked-l1-1-0.dll",
+            "/bin/api-ms-win-core-libraryloader-l1-1-0.dll",
+            "/bin/api-ms-win-core-localization-l1-2-0.dll",
+            "/bin/api-ms-win-core-memory-l1-1-0.dll",
+            "/bin/api-ms-win-core-namedpipe-l1-1-0.dll",
+            "/bin/api-ms-win-core-processenvironment-l1-1-0.dll",
+            "/bin/api-ms-win-core-processthreads-l1-1-0.dll",
+            "/bin/api-ms-win-core-processthreads-l1-1-1.dll",
+            "/bin/api-ms-win-core-profile-l1-1-0.dll",
+            "/bin/api-ms-win-core-rtlsupport-l1-1-0.dll",
+            "/bin/api-ms-win-core-string-l1-1-0.dll",
+            "/bin/api-ms-win-core-synch-l1-1-0.dll",
+            "/bin/api-ms-win-core-synch-l1-2-0.dll",
+            "/bin/api-ms-win-core-sysinfo-l1-1-0.dll",
+            "/bin/api-ms-win-core-timezone-l1-1-0.dll",
+            "/bin/api-ms-win-core-util-l1-1-0.dll",
+            "/bin/api-ms-win-crt-conio-l1-1-0.dll",
+            "/bin/api-ms-win-crt-convert-l1-1-0.dll",
+            "/bin/api-ms-win-crt-environment-l1-1-0.dll",
+            "/bin/api-ms-win-crt-filesystem-l1-1-0.dll",
+            "/bin/api-ms-win-crt-heap-l1-1-0.dll",
+            "/bin/api-ms-win-crt-locale-l1-1-0.dll",
+            "/bin/api-ms-win-crt-math-l1-1-0.dll",
+            "/bin/api-ms-win-crt-multibyte-l1-1-0.dll",
+            "/bin/api-ms-win-crt-private-l1-1-0.dll",
+            "/bin/api-ms-win-crt-process-l1-1-0.dll",
+            "/bin/api-ms-win-crt-runtime-l1-1-0.dll",
+            "/bin/api-ms-win-crt-stdio-l1-1-0.dll",
+            "/bin/api-ms-win-crt-string-l1-1-0.dll",
+            "/bin/api-ms-win-crt-time-l1-1-0.dll",
+            "/bin/api-ms-win-crt-utility-l1-1-0.dll",
+            "/bin/decora_sse.dll",
+            "/bin/glass.dll",
+            "/bin/glib-lite.dll",
+            "/bin/gstreamer-lite.dll",
+            "/bin/javafx_font.dll",
+            "/bin/javafx_iio.dll",
+            "/bin/jfxmedia.dll",
+//            "/bin/jfxwebkit.dll",
+            "/bin/msvcp140.dll",
+            "/bin/msvcp140_1.dll",
+            "/bin/msvcp140_2.dll",
+            "/bin/prism_common.dll",
+            "/bin/prism_d3d.dll",
+            "/bin/prism_sw.dll",
+            "/bin/ucrtbase.dll",
+            "/bin/vcruntime140.dll",
+            "/bin/vcruntime140_1.dll",
+            "/bin/fxplugins.dll",
         };
-        System.setProperty("java.library.path", System.getProperty("java.io.tmpdir"));
+        String[] soFiles = {
+            "/lib/libprism_es2.so",
+            "/lib/libprism_sw.so",
+            "/lib/libgstreamer-lite.so",
+            "/lib/libdecora_sse.so",
+            // "/lib/libglass.so",
+            // "/lib/libglassgtk3.so",
+            "/lib/libprism_common.so",
+            // "/lib/libavplugin-54.so",
+            // "/lib/libavplugin-56.so",
+            //"/lib/libavplugin-57.so",
+            // "/lib/libavplugin-ffmpeg-56.so",
+            // "/lib/libavplugin-ffmpeg-57.so",
+            // "/lib/libavplugin-ffmpeg-58.so",
+            // "/lib/libavplugin-ffmpeg-59.so",
+            "/lib/libjavafx_font.so",
+            "/lib/libjavafx_font_freetype.so",
+            "/lib/libjavafx_font_pango.so",
+            "/lib/libjavafx_iio.so",
+            "/lib/libjfxmedia.so",
+            "/lib/libfxplugins.so",
+//            "/lib/libjfxwebkit.so",
+        };
+        //System.out.println(System.getProperty("java.library.path"));
 
-        for (String dllFile : dllFiles) {
-            try {
-                InputStream dllInputStream = Main.class.getResourceAsStream("/bin" + dllFile);
-                File extractedDllFile = new File(System.getProperty("java.io.tmpdir") + dllFile);
+        if (System.getProperty("os.name").split(" ")[0].equals("Windows")) {
+            // Add dll path to java library path same as `export PATH=$PATH:/new/path/here` on linux
+            System.setProperty("java.library.path", System.getProperty("java.library.path") + ";" + System.getProperty("java.io.tmpdir") + "/bin");
+            for (String dllFile : dllFiles) {
+                extractFile(dllFile, System.getProperty("java.io.tmpdir"));
+    
+                // Load the DLL
+                System.out.println("Loading dll " + dllFile);
+                System.load(System.getProperty("java.io.tmpdir") + dllFile);
+            }
+        } else if (System.getProperty("os.name").split(" ")[0].equals("Linux")) {
+            System.setProperty("java.library.path", System.getProperty("java.library.path") + ";" + System.getProperty("java.io.tmpdir") + "/lib");
+            for (String soFile: soFiles) {
+                extractFile(soFile, System.getProperty("java.io.tmpdir"));
+    
+                // Load the DLL
+                System.out.println("Loading " + soFile);
+                System.load(System.getProperty("java.io.tmpdir") + soFile);
+            }
+        }
+    }
 
-                // Create parent directories if they don't exist
-                extractedDllFile.getParentFile().mkdirs();
+    public static void extractFile(String fileToExtract) {
+        extractFile(fileToExtract, ".");
+    }
+    public static void extractFile(String fileToExtract, String outputDirectory) {
+        try {
+            InputStream fileInputStream = Main.class.getResourceAsStream(fileToExtract);
 
-                FileOutputStream dllOutputStream = new FileOutputStream(extractedDllFile);
+            if (fileInputStream != null) {
+                //File outputFile = new File(outputDirectory, new File(fileToExtract).getName());
+                File outputFile = new File(outputDirectory + fileToExtract);
 
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = dllInputStream.read(buffer)) != -1) {
-                    dllOutputStream.write(buffer, 0, bytesRead);
+                // Ensure the parent directory exists
+                File parentDir = outputFile.getParentFile();
+                if (parentDir != null) {
+                    parentDir.mkdirs();
                 }
 
-                dllInputStream.close();
-                dllOutputStream.close();
+                try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
 
-                // Load the DLL
-                System.out.println("Loading " + dllFile);
-                System.load(extractedDllFile.getAbsolutePath());
-            } catch (IOException e) {
-                System.out.println("Import error: " + dllFile);
-                e.printStackTrace();
+                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                        fos.write(buffer, 0, bytesRead);
+                    }
+                }
+
+            } else {
+                throw new IOException("File " + fileToExtract + " not found in the JAR file.");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

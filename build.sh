@@ -3,22 +3,44 @@
 # Yes this is a linux program to build a windows jar its fineeee
 
 # Clean build directory
-rm -rf out/* &&
+echo "Cleaning build directory"
+rm -rf out/*
+wait
+
+# Build variables
+JAR_DIR="lib/javafx-sdk-21/lib"
+LIB_DIR_SRC="lib/javafx-sdk-21/bin"
+LIB_DIR_DEST="bin"
+LIB_FILE_EXT="dll"
+JAR_FILE="EPIC.jar"
+RM_DEPS="out/bin/jfxwebkit.dll"
+
+# Alternate values for linux systems
+if [[ $1 == "--linux" ]]; then
+    JAR_DIR="lib/javafx-sdk-21_linux/lib"
+    LIB_DIR_SRC="lib/javafx-sdk-21_linux/lib"
+    LIB_DIR_DEST="lib"
+    LIB_FILE_EXT="so"
+    JAR_FILE="EPIC_linux.jar"
+    RM_DEPS="out/lib/libjfxwebkit.so"
+fi
 
 # Unpack Jar files to create a Fat Jar
-for f in lib/javafx-sdk-21/lib/*.jar; do 
-    echo "Adding $f to ";
+#for f in lib/javafx-sdk-21/lib/*.jar; do 
+for f in $JAR_DIR/*.jar; do 
+    echo "Adding $f to package";
     # -o Overwrites Manifest of each file, might cause problems
     unzip -qo $f -d out/;
 done
 
-# Copy DLL files into build directory
-mkdir out/bin
-cp lib/javafx-sdk-21/bin/* out/bin/
+# Copy LIB files into build directory
+echo "Copying system libraries"
+mkdir out/$LIB_DIR_DEST
+cp $LIB_DIR_SRC/*.$LIB_FILE_EXT out/$LIB_DIR_DEST/
 
 # Compile java source files
 echo "Compiling Java source code"
-javac -d out/ -sourcepath src src/*/*.java --module-path lib/javafx-sdk-21/lib --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+javac -d out/ -sourcepath src src/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
 
 # File Work
 echo "Completing file tree structure"
@@ -29,11 +51,11 @@ cp -r data out/
 ## Remove Blank Manifest from Jar files
 rm out/META-INF/MANIFEST.MF
 
-rm out/bin/jfxwebkit.dll
+rm $RM_DEPS
 
 # Create Jar file
 echo "Creating Jar File"
-jar cfm EPIC.jar META-INF/MANIFEST.MF -C out/ . || { echo "Build failed"; exit; }
+jar cfm $JAR_FILE META-INF/MANIFEST.MF -C out/ . || { echo "Build failed"; exit; }
 
 # Done
 echo "Jar built"

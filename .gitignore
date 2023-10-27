@@ -26,3 +26,6 @@ replay_pid*
 # Build Files
 out
 EPIC*.jar
+
+# User .user files
+*.user

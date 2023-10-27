@@ -16,7 +16,7 @@ public class LoginManager {
 
     /** Check if a user has been saved before */
     public static boolean userExists(String username) {
-        File userFile = new File("data1/user_" + username + ".csv");
+        File userFile = new File("data/" + username + ".user");
         if (!userFile.exists()) {
             return false;
         }
@@ -25,10 +25,8 @@ public class LoginManager {
 
     /** Save a User object to disk */
     public static void saveUser(User user) {
-        // serialize the Queue
-        System.out.println("serializing theQueue");
         try {
-            FileOutputStream fout = new FileOutputStream("data/user_" + user.username + ".bin");
+            FileOutputStream fout = new FileOutputStream("data/" + user.username + ".user");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(user);
             oos.close();
@@ -41,13 +39,13 @@ public class LoginManager {
     public static User loadUser(String username) {
         User user;
         try {
-            FileInputStream fin = new FileInputStream("data/user_" + username + ".bin");
+            FileInputStream fin = new FileInputStream("data/" + username + ".user");
             ObjectInputStream ois = new ObjectInputStream(fin);
             user = (User) ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
-            return new User(null, null);
+            user = new User(null, null);
         }
         return user;
     }

@@ -3,37 +3,16 @@ package quizgame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class LoginManager {
-    // do we even need this?
-    /*
-    public LoginManager(String username, String password) {
-        File userFile = new File("data/user_" + username + ".dat");
-
-        // Make sure parent directory exists
-        File parentDir = userFile.getParentFile();
-        if (!parentDir.exists()) {
-            parentDir.mkdirs();
-        }
-
-        // Check for file present
-        if (!userFile.exists()) {
-            try {
-                // userFile.mkdirs();
-                userFile.createNewFile();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    } */
-
-    // public static User registerUser(String username, String password) {
-
-    // }
+    /** Create a new user, save them to disk, return new user */
+    public static User registerUser(String username, String password) {
+        User newUser = new User(username, password);
+        saveUser(newUser);
+        return newUser;
+    }
 
     /** Check if a user has been saved before */
     public static boolean userExists(String username) {
@@ -44,7 +23,7 @@ public class LoginManager {
         return true;
     }
 
-    /** Save a User object to disk */ 
+    /** Save a User object to disk */
     public static void saveUser(User user) {
         // serialize the Queue
         System.out.println("serializing theQueue");
@@ -53,31 +32,33 @@ public class LoginManager {
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(user);
             oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { e.printStackTrace(); }
     }
 
     /** Load a User from disk */
     public static User loadUser(String username) {
-        User user = new User(username, username);
+        User user;
         try {
-            FileInputStream fin = new FileInputStream("data/user_" + username + ".dat");
+            FileInputStream fin = new FileInputStream("data/user_" + username + ".bin");
             ObjectInputStream ois = new ObjectInputStream(fin);
             user = (User) ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
+            return new User(null, null);
         }
         return user;
-
     }
-
 
     // Testing purposes only
     public static void main(String[] args) {
         new LoginManager();
-        User a = new User("nik", "nikpass");
+        User a = new User("debug", "debug_password");
         LoginManager.saveUser(a);
-        User b = LoginManager.loadUser("nik");
+        User b = LoginManager.loadUser("debug");
+        System.out.println(b.username);
+        System.out.println(b.password_hash);
     }
 }

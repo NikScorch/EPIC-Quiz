@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 //import javax.swing.JOptionPane;
 
-public class User {
+public class User implements java.io.Serializable {
+    String username;
+    String password_hash;
     // Establishing variables
     int score = 0;
     int inputedAnswer;
@@ -16,6 +18,17 @@ public class User {
     int hardScore = 0;
     Question[] answeredQuestions = new Question[6];
     Difficulty difficulty = Difficulty.EASY;
+
+    public User(String username, String password) {
+        // TODO: lmao this is gonna be so insecure there absolutely no fucking hashing going on here i cannot be assed rn
+        this.username = username;
+        this.password_hash = password;
+        //char[] passChars = password.toUpperCase().toCharArray();
+        //java.util.Arrays.sort(passChars).;
+        //this.password_hash = 
+        //System.out.println("Hello");
+    }
+
 
     // test area
     public static void main(String[] args) {

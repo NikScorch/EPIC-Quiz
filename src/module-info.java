@@ -1,12 +1,12 @@
 module quizgame {
-
+    requires javafx.graphics;
     requires javafx.controls;
+    requires javafx.media;
+    requires javafx.base;
+    requires javafx.web;
+    requires javafx.swing;
     requires javafx.fxml;
 
     opens quizgame to javafx.fxml;
     exports quizgame;
-    //opens quizgame.resource to javafx.fxml;
-
-
-
 }

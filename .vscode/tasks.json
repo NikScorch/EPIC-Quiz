@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+	{
+		"label": "Build and package",
+		"type": "shell",
+		"command": "./build.sh && cp EPIC.jar /mnt/c/Users/corma/Downloads/ && java.exe -jar C:/Users/corma/Downloads/EPIC.jar",
+		"presentation": {
+			"reveal": "always",
+			"panel": "new"
+		},
+		"problemMatcher": []
+	},
+	{
+		"label": "Build and package - Linux",
+		"type": "shell",
+		"command": "./build.sh --linux; java -jar EPIC_linux.jar",
+		"presentation": {
+			"reveal": "always",
+			"panel": "new"
+		},
+		"problemMatcher": []
+	}
+]
+}

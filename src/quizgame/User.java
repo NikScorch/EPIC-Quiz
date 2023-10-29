@@ -3,8 +3,10 @@ package quizgame;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class User {
-    //Establishing variables
+public class User implements java.io.Serializable {
+    String username;
+    String password_hash;
+    // Establishing variables
     int score = 0;
     int inputedAnswer;
     int mathsScore = 0;
@@ -16,17 +18,24 @@ public class User {
     Question[] answeredQuestions = new Question[6];
     Difficulty difficulty = Difficulty.EASY;
 
+    public User(String username, String password) {
+        // TODO: lmao this is gonna be so insecure there absolutely no fucking hashing going on here i cannot be assed rn
+        this.username = username;
+        this.password_hash = password;
+        //char[] passChars = password.toUpperCase().toCharArray();
+        //java.util.Arrays.sort(passChars).;
+        //this.password_hash = 
+        //System.out.println("Hello");
+    }
 
-    //test area
     public static void main(String[] args) {
 
     }
 
-
-    //calculating the overall score of the test
+    // calculating the overall score of the test
     public int score(Question q) {
         for (int i = 0; i <= 6; i++) {
-            //if (inputedAnswer.equals(Question.correctAnswerIndex[i])) {
+
             if (inputedAnswer == q.answerIndex) {
                 System.out.println("Correct answer!");
                 score++;
@@ -40,7 +49,7 @@ public class User {
     }
 
 
-    //calculating the score for maths specifically
+    // calculating the score for maths specifically
     public int scoreForDiscreteMaths() {
         for (Question q : answeredQuestions) {
             // If the given question is NOT a discrete maths question
@@ -54,8 +63,7 @@ public class User {
         return mathsScore;
     }
 
-
-    //calculating the score for comp Org specifically
+    // calculating the score for comp Org specifically
     public int scoreForCompOrg() {
         for (Question q : answeredQuestions) {
             if (q.topic != Topic.COMP_ORG) {
@@ -67,8 +75,8 @@ public class User {
     }
 
 
-    //calculating the score for cs spcifically
-    public int scoreForCompScience() {
+    // calculating the score for cs spcifically
+    public int scoreForCompScicence() {
         for (Question q : answeredQuestions) {
             if (q.topic != Topic.COMPUTER_SCIENCE) {
                 continue;
@@ -78,8 +86,7 @@ public class User {
         return compSciScore;
     }
 
-
-    //calculating the score for easy questions
+    // calculating the score for easy questions
     public int scoreForEasy() {
         for (Question q : answeredQuestions) {
             if (q.difficulty != Difficulty.EASY) {
@@ -91,8 +98,7 @@ public class User {
 
     }
 
-
-    //calcualting the score for medium questions
+    // calcualting the score for medium questions
     public int scoreForMedium() {
         for (Question q : answeredQuestions) {
             if (q.difficulty != Difficulty.MEDIUM) {
@@ -103,8 +109,7 @@ public class User {
         return mediumScore;
     }
 
-
-    //calcualting the score for hard questions
+    // calcualting the score for hard questions
     public int scoreForHard() {
         for (Question q : answeredQuestions) {
             if (q.difficulty != Difficulty.HARD) {
@@ -116,10 +121,3 @@ public class User {
     }
 
 }
-
-
-
-
-
-
-

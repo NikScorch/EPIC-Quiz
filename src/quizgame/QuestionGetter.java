@@ -2,6 +2,9 @@ package quizgame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class QuestionGetter {
     /*
@@ -12,40 +15,53 @@ public class QuestionGetter {
      *               new String[]{"2","4","7","5"}, 1, 
      *               Topic.COMP_ORG, Difficulty.EASY),
      */
-    static Question[] questions = {
-        //      Discrete Maths Questions
-        // Easy Questions
-        new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.DISCRETE_MATHS, Difficulty.EASY),
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.EASY),   
-        // Medium Questions
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.MEDIUM), 
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.MEDIUM), 
-        // Hard Questions
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.HARD),   
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.HARD),   
+    public static Question[] questions;
 
-        //      Computer Organisation Questions
-        // Easy Questions
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.EASY),
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.EASY),
-        // Medium Questions
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.MEDIUM),
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.MEDIUM),
-        // Hard Questions
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.HARD),
-        new Question(null, null, 0, Topic.COMP_ORG, Difficulty.HARD),
+    public static void loadQuestions() {
+        loadQuestions("data/questions.csv");
+    }
+    public static void loadQuestions(String fileName) {
+        Scanner file;
+        // Bad code that attempts to find which file we are editing
+        try {
+            file = new Scanner(new File(fileName));
+        } catch (FileNotFoundException e) {
+            try {
+                file = new Scanner(new File("data/questions.csv"));
+            } catch (FileNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                e1.printStackTrace();
+                return;
+            }
+        }
+        file.useDelimiter(",");
+        /*
+         * I have spent seven days trying to make this work but no matter what i do, csv has decidede i should go fuck myself
+         * please explain why scanner is unable to split at both line ends and semicolons
+         */
+        for (int i = 0; i < 8; i++) {
+            file.next();        // Remove file header
+        }
+        List<Question> data = new ArrayList<Question>();
 
-        //      Computer Science Questions
-        // Easy Questions
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.EASY),
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.EASY),
-        // Medium Questions
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.MEDIUM),
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.MEDIUM),
-        // Hard Questions
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.HARD),
-        new Question(null, null, 0, Topic.COMPUTER_SCIENCE, Difficulty.HARD),
-    };
+        while (file.hasNext()) {
+            // This disgusting line converts each line in the csv file into question classes
+            data.add(new Question(
+                file.next().substring(1), 
+                new String[]{
+                    file.next(), 
+                    file.next(), 
+                    file.next(), 
+                    file.next()
+                }, 
+                Integer.parseInt(file.next()), 
+                Topic.values()[Integer.parseInt(file.next())], 
+                Difficulty.values()[Integer.parseInt(file.next())])
+            );
+        }
+        questions = data.toArray(new Question[data.size()]);
+    }
 
     /**
      * Retrieve an array of all available questions
@@ -128,94 +144,20 @@ public class QuestionGetter {
     // It is for debug purposes only
     public static void main(String[] args) {
         //specific_subject_random_game(Topic.COMPUTER_SCIENCE);
-        getRandomQuestion();
+        // getRandomQuestion();
 
-        Question q = new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.COMP_ORG, Difficulty.EASY);
-        q.print();
+        // Question q = new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.COMP_ORG, Difficulty.EASY);
+        // q.print();
 
-        Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
-        System.out.println(java.util.Arrays.toString(qs));
-        System.out.println(qs.length);
-
-
-    }
-
-}
-
-/**
- * Stores all relavant data regarding a question in a single object
- */
-class Question {
-    String question;
-    String[] answers;
-    int answerIndex;
-    Topic topic;
-    Difficulty difficulty;
-
-    /**
-     * @param question Question given to the user
-     * @param answers All multiple choice answers to the given question
-     * @param correctAnswerIndex The position of the correct answer in the previous argument
-     * @param topic The topic the question fits into
-     */
-    public Question(String question, String[] answers, int correctAnswerIndex, Topic topic, Difficulty difficulty) {
-        this.question = question;
-        this.answers = answers;
-        this.answerIndex = correctAnswerIndex;
-        this.topic = topic;
-        this.difficulty = difficulty;
-    }
-
-    public void print() {
-        System.out.println(this.question + "\t\t" + this.answers[this.answerIndex] + "\t\tTopic " + this.topic + "\t\tDifficulty " + this.difficulty);
-    }
-}
-
-/** Indicator for the topic of a question */
-enum Topic {
-    DISCRETE_MATHS,
-    COMP_ORG,
-    COMPUTER_SCIENCE
-}
-
-/** Indicator for the difficulty of a question */
-enum Difficulty {
-    EASY,
-    MEDIUM,
-    HARD;
-
-    /**
-     * Example: myDifficulty = myDifficulty.increaseDifficulty();
-     * // Increase the difficulty of the enum, does not exceed HARD.
-     * @return New Difficulty Enum
-     */
-    public Difficulty increaseDifficulty() {
-        switch (this) {
-            case EASY:
-                return MEDIUM;
-            case MEDIUM:
-                return HARD;
-            case HARD:
-                return HARD;
-            default:
-                throw new IllegalStateException();
+        // Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
+        // System.out.println(java.util.Arrays.toString(qs));
+        // System.out.println(qs.length);
+        loadQuestions();
+        for (Question q: questions) {
+            q.print();
         }
+
+
     }
-    /**
-     * Example: myDifficulty = myDifficulty.decreaseDifficulty();
-     * // Decrease the difficulty of the enum, does not go below EASY.
-     * @return New Difficulty Enum
-     */
-    public Difficulty decreaseDifficulty() {
-        switch (this) {
-            case EASY:
-                return EASY;
-            case MEDIUM:
-                return EASY;
-            case HARD:
-                return MEDIUM;
-            default:
-                throw new IllegalStateException();
-        }
-    }
+
 }

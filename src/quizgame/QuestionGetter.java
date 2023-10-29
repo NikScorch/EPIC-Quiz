@@ -15,7 +15,7 @@ public class QuestionGetter {
     static Question[] questions = {
         //      Discrete Maths Questions
         // Easy Questions
-        new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.EASY),   
+        new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.DISCRETE_MATHS, Difficulty.EASY),
         new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.EASY),   
         // Medium Questions
         new Question(null, null, 0, Topic.DISCRETE_MATHS, Difficulty.MEDIUM), 

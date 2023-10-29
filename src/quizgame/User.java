@@ -2,7 +2,6 @@ package quizgame;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-//import javax.swing.JOptionPane;
 
 public class User implements java.io.Serializable {
     String username;
@@ -29,17 +28,14 @@ public class User implements java.io.Serializable {
         //System.out.println("Hello");
     }
 
-
-    // test area
     public static void main(String[] args) {
-        user();
 
     }
 
     // calculating the overall score of the test
     public int score(Question q) {
         for (int i = 0; i <= 6; i++) {
-            // if (inputedAnswer.equals(Question.correctAnswerIndex[i])) {
+
             if (inputedAnswer == q.answerIndex) {
                 System.out.println("Correct answer!");
                 score++;
@@ -51,6 +47,7 @@ public class User implements java.io.Serializable {
 
         return score;
     }
+
 
     // calculating the score for maths specifically
     public int scoreForDiscreteMaths() {
@@ -76,6 +73,7 @@ public class User implements java.io.Serializable {
         }
         return compOrgScore;
     }
+
 
     // calculating the score for cs spcifically
     public int scoreForCompScicence() {
@@ -120,38 +118,6 @@ public class User implements java.io.Serializable {
             hardScore++;
         }
         return hardScore;
-    }
-
-    // creating the login interface
-    public static void user() {
-        Scanner scanner = new Scanner(System.in);
-        String username;
-        String password;
-
-        System.out.println("Welcome! Enter 1 to login or 2 to sign up");
-        int entry = scanner.nextInt();
-
-        if (entry == 1) {
-            System.out.println("Enter Username: ");
-            username = scanner.nextLine();
-            scanner.nextLine();
-
-            System.out.println("Enter Password: ");
-            password = scanner.nextLine();
-            System.out.println("Welcome " + username);
-        } else if (entry == 2) {
-            System.out.println("Enter Username: ");
-            username = scanner.nextLine();
-            scanner.nextLine();
-            System.out.println("Enter Password: ");
-            password = scanner.nextLine();
-        } else {
-            System.out.println("invalid entry. Please try again");
-
-        }
-
-        scanner.close();
-
     }
 
 }

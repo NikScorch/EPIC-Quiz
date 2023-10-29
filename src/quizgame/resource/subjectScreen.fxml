@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.switchSceneController">
+<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SwitchSceneController">
     <children>
         <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: #c665b1;" />
         <Label alignment="CENTER" layoutY="127.0" prefHeight="50.0" prefWidth="691.0" text="Choose subject" textFill="#7b3c98">
@@ -13,27 +13,27 @@
                 <Font name="System Bold" size="33.0" />
             </font>
         </Label>
-        <Button layoutX="202.0" layoutY="216.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
+        <Button layoutX="202.0" layoutY="216.0" mnemonicParsing="false" onAction="#switchToQuizMaths" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="286.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
+        <Button layoutX="202.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToQuizCompOrg" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="356.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
+        <Button layoutX="202.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchToQuizCompSci" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="424.0" mnemonicParsing="false" onAction="#switchToInstructions" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+        <Button layoutX="202.0" layoutY="424.0" mnemonicParsing="false" onAction="#randomQuestionDisplay" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToDifficulty" prefHeight="20.0" prefWidth="91.0" style="-fx-background-color: #f8ecf8;" text="Back" textFill="#c665b1">
+        <Button layoutX="585.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="20.0" prefWidth="91.0" style="-fx-background-color: #f8ecf8;" text="Back" textFill="#c665b1">
             <font>
                 <Font size="16.0" />
             </font>

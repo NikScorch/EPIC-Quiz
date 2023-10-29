@@ -152,7 +152,7 @@ public class QuestionGetter {
         // Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
         // System.out.println(java.util.Arrays.toString(qs));
         // System.out.println(qs.length);
-        loadQuestions();
+            loadQuestions();
         for (Question q: questions) {
             q.print();
         }

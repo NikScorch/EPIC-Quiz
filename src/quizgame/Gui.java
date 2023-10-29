@@ -24,6 +24,7 @@ public class Gui extends Application {
     }
 
     public static void main(String[] args) {
+        QuestionGetter.loadQuestions();
         launch();
     }
 }

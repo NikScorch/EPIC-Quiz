@@ -2,6 +2,35 @@
 # Build Program
 # Yes this is a linux program to build a windows jar its fineeee
 
+# Project security check
+HASH_CHECK=`cat hash.txt`
+FILES=`tree -if --noreport --gitignore src data lib`
+HASH=""
+## Get hash of each file
+for FILE in $FILES; do
+    # Skip directories
+    if [[ -f $FILE ]]; then
+        HASH=$HASH:`sha1sum $FILE`
+    fi
+done
+## Get hash of all files
+HASH=`echo $HASH | sha1sum`
+## Save new hash
+if [[ $1 == "--genhash" ]]; then
+    echo "$HASH" > hash.txt
+    cat hash.txt
+    exit
+fi
+## Project warning
+if [[ $HASH != $HASH_CHECK ]]; then
+    echo "Project Structure has been tampered with"
+    echo "Do you want to continue?"
+    read -p "[y/N]: " CONTINUE
+    if [[ $CONTINUE == "N" || $CONTINUE == "n" || -z $CONTINUE ]]; then
+        exit
+    fi
+fi
+
 # Clean build directory
 echo "Cleaning build directory"
 rm -rf out/*

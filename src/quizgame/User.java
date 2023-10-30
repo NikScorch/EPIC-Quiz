@@ -2,9 +2,10 @@ package quizgame;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-//import javax.swing.JOptionPane;
 
-public class User {
+public class User implements java.io.Serializable {
+    String username;
+    String password_hash;
     // Establishing variables
     int score = 0;
     int inputedAnswer;
@@ -17,16 +18,32 @@ public class User {
     Question[] answeredQuestions = new Question[6];
     Difficulty difficulty = Difficulty.EASY;
 
-    // test area
+    public User(String username, String password) {
+        this.username = username;
+        this.password_hash = hashPassword(password);
+    }
+
+    /** Check if an entered password matches the stored password */
+    public boolean verifyPassword(String enteredPassword) {
+        return hashPassword(enteredPassword).equals(this.password_hash);
+    }
+
+    /** Create a password hash */
+    private String hashPassword(String enteredPassword) {
+        // TODO: should realistically have a better hashing alorithm
+        // This is a placehold so all code calling to hash passwords
+        // points to the same place
+        return Integer.toString(enteredPassword.hashCode());
+    }
+
     public static void main(String[] args) {
-        user();
 
     }
 
     // calculating the overall score of the test
     public int score(Question q) {
         for (int i = 0; i <= 6; i++) {
-            // if (inputedAnswer.equals(Question.correctAnswerIndex[i])) {
+
             if (inputedAnswer == q.answerIndex) {
                 System.out.println("Correct answer!");
                 score++;
@@ -38,6 +55,7 @@ public class User {
 
         return score;
     }
+
 
     // calculating the score for maths specifically
     public int scoreForDiscreteMaths() {
@@ -63,6 +81,7 @@ public class User {
         }
         return compOrgScore;
     }
+
 
     // calculating the score for cs spcifically
     public int scoreForCompScicence() {
@@ -107,38 +126,6 @@ public class User {
             hardScore++;
         }
         return hardScore;
-    }
-
-    // creating the login interface
-    public static void user() {
-        Scanner scanner = new Scanner(System.in);
-        String username;
-        String password;
-
-        System.out.println("Welcome! Enter 1 to login or 2 to sign up");
-        int entry = scanner.nextInt();
-
-        if (entry == 1) {
-            System.out.println("Enter Username: ");
-            username = scanner.nextLine();
-            scanner.nextLine();
-
-            System.out.println("Enter Password: ");
-            password = scanner.nextLine();
-            System.out.println("Welcome " + username);
-        } else if (entry == 2) {
-            System.out.println("Enter Username: ");
-            username = scanner.nextLine();
-            scanner.nextLine();
-            System.out.println("Enter Password: ");
-            password = scanner.nextLine();
-        } else {
-            System.out.println("invalid entry. Please try again");
-
-        }
-
-        scanner.close();
-
     }
 
 }

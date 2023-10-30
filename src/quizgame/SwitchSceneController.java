@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -30,11 +27,15 @@ public class SwitchSceneController implements Initializable {
     @FXML
     private ProgressBar progressBar;
     @FXML
-    private Button tempButton;
+    private Button tempButton, switchSceneButton;
     @FXML
     private Label questionField;
     @FXML
     private RadioButton optionA, optionB, optionC, optionD;
+    @FXML
+    TextField usernameTextField, registerUserTextField;
+    @FXML
+    PasswordField passwordTextField, registerPasswordField, reEnterPasswordField;
     double progress;
     Question[] answeredQuestions = new Question[6];
     int easyScore = 0;
@@ -74,6 +75,7 @@ public class SwitchSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToPlayagain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/playagainScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -214,9 +216,10 @@ public class SwitchSceneController implements Initializable {
 
     public void easyQuestionDisplay() {
         int[] count = {0};
+        switchSceneButton.setVisible(false);
 
         tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
+            if (count[0] < 7) {
 
                 Question[] questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.EASY);
                 if (count[0] < questions.length) {
@@ -228,10 +231,17 @@ public class SwitchSceneController implements Initializable {
                     optionC.setText(questions[count[0]].answers[2]);
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
+                    if (count[0] > 1) {
+                        increaseProgress();
+                    }
                 }
-                increaseProgress();
 
+                if (count[0] == 7) {
+                    switchSceneButton.setVisible(true);
+                    tempButton.setVisible(false);
+                }
             }
+
         });
     }
 
@@ -253,6 +263,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -273,6 +284,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -293,6 +305,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -313,6 +326,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -333,6 +347,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -351,6 +366,7 @@ public class SwitchSceneController implements Initializable {
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
                 }
+                increaseProgress();
             }
         });
     }
@@ -368,15 +384,58 @@ public class SwitchSceneController implements Initializable {
         else {
             int answer = 3;
         }
-        for (Question q : answeredQuestions) {
-
-            if (q.difficulty != Difficulty.EASY) {
-                continue;
-            }
-            easyScore++;
-        }
-        increaseProgress();
-
 
     }
+
+    public void login(ActionEvent event) throws IOException {
+        String username = usernameTextField.getText();
+        String password = passwordTextField.getText();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error!");
+        alert.setHeaderText("User does not exist.");
+        alert.setContentText("Invalid username, please register or recheck your username.");
+
+
+        if (LoginManager.userExists(username)) {
+            LoginManager.loadUser(username);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
+            root = loader.load();
+            SwitchSceneController controller = loader.getController();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            alert.showAndWait();
+        }
+    }
+
+    public void register(ActionEvent event) throws IOException {
+    String username = registerUserTextField.getText();
+    String password = registerPasswordField.getText();
+    String reEnterPassword = reEnterPasswordField.getText();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error!");
+        alert.setHeaderText("Passwords do not match");
+        alert.setContentText("Re-enter your password and check for spelling errors");
+
+    if(password.equals(reEnterPassword)) {
+        LoginManager.registerUser(username, password);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/hello-view.fxml"));
+        root = loader.load();
+        SwitchSceneController controller = loader.getController();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    else{
+        alert.showAndWait();
+    }
+    }
+
+
 }

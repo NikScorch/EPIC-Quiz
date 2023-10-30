@@ -20,13 +20,21 @@ public class User implements java.io.Serializable {
     Difficulty difficulty = Difficulty.EASY;
 
     public User(String username, String password) {
-        // TODO: lmao this is gonna be so insecure there absolutely no fucking hashing going on here i cannot be assed rn
         this.username = username;
-        this.password_hash = password;
-        //char[] passChars = password.toUpperCase().toCharArray();
-        //java.util.Arrays.sort(passChars).;
-        //this.password_hash = 
-        //System.out.println("Hello");
+        this.password_hash = hashPassword(password);
+    }
+
+    /** Check if an entered password matches the stored password */
+    public boolean verifyPassword(String enteredPassword) {
+        return hashPassword(enteredPassword).equals(this.password_hash);
+    }
+
+    /** Create a password hash */
+    private String hashPassword(String enteredPassword) {
+        // TODO: should realistically have a better hashing alorithm
+        // This is a placehold so all code calling to hash passwords
+        // points to the same place
+        return Integer.toString(enteredPassword.hashCode());
     }
 
 

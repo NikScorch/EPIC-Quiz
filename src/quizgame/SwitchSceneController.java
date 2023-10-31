@@ -229,7 +229,7 @@ public class SwitchSceneController implements Initializable {
         switchSceneButton.setVisible(false);
 
         tempButton.setOnAction(e -> {
-            if (count[0] < 7) {
+            if (count[0] < 6) {
 
                 Question[] questions = QuestionGetter.getAllQuestionsByFilter(diff);
                 if (count[0] < questions.length) {
@@ -241,7 +241,7 @@ public class SwitchSceneController implements Initializable {
                     optionC.setText(questions[count[0]].answers[2]);
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
-                    if (count[0] > 1) {
+                    if (count[0] > 0) {
                         increaseProgress();
                         //this.currentUser.storeQuestion(questions[count[0]]);
                     }
@@ -249,7 +249,7 @@ public class SwitchSceneController implements Initializable {
 
             }
 
-            if (count[0] == 7) {
+            if (count[0] == 6) {
                 switchSceneButton.setVisible(true);
                 tempButton.setVisible(false);
             }
@@ -258,17 +258,19 @@ public class SwitchSceneController implements Initializable {
     }
 
 
-
     public void questionDisplayRandom() {
         int[] count = {0};
         switchSceneButton.setVisible(false);
 
         tempButton.setOnAction(e -> {
-            if (count[0] < 7) {
+            if (count[0] < 6) {
 
 
                 //broken
-                Question[] questions = new Question[]{QuestionGetter.getRandomQuestion()};
+                Question[] questions = new Question[6];
+                for (int i = 0; i < questions.length; i++) {
+                    questions[i] = QuestionGetter.getRandomQuestion();
+                }
                 if (count[0] < questions.length) {
 
                     questionField.setText(questions[count[0]].question);
@@ -278,13 +280,13 @@ public class SwitchSceneController implements Initializable {
                     optionC.setText(questions[count[0]].answers[2]);
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
-                    if (count[0] > 1) {
+                    if (count[0] > 0) {
                         increaseProgress();
                         //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
 
-                if (count[0] == 7) {
+                if (count[0] == 6) {
                     switchSceneButton.setVisible(true);
                     tempButton.setVisible(false);
                 }
@@ -293,12 +295,13 @@ public class SwitchSceneController implements Initializable {
         });
     }
 
+
     public void questionDisplayTopic(Topic topic) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
 
         tempButton.setOnAction(e -> {
-            if (count[0] < 7) {
+            if (count[0] < 6) {
 
                 Question[] questions = QuestionGetter.getAllQuestionsByFilter(topic);
                 if (count[0] < questions.length) {
@@ -310,13 +313,13 @@ public class SwitchSceneController implements Initializable {
                     optionC.setText(questions[count[0]].answers[2]);
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
-                    if (count[0] > 1) {
+                    if (count[0] > 0) {
                         increaseProgress();
                         //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
 
-                if (count[0] == 7) {
+                if (count[0] == 6) {
                     switchSceneButton.setVisible(true);
                     tempButton.setVisible(false);
                 }

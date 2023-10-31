@@ -14,7 +14,7 @@ public class Gui extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("resource/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 690, 540);
-        stage.setTitle("QuizGame-Welcome");
+        stage.setTitle("Luna-Quiz");
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);

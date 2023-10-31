@@ -98,20 +98,6 @@ public class SwitchSceneController implements Initializable {
         stage.show();
     }
 
-    public void switchToQuiz(ActionEvent event) throws IOException {
-        //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-
-        SwitchSceneController controller = loader.getController();
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        controller.questionDisplay(Difficulty.EASY);
-
-    }
 
     public void switchToQuizEasy(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -124,7 +110,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.easyQuestionDisplay();
+        controller.questionDisplayDifficulty(Difficulty.EASY);
 
     }
     public void switchToQuizMedium(ActionEvent event) throws IOException {
@@ -138,7 +124,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.mediumQuestionDisplay();
+        controller.questionDisplayDifficulty(Difficulty.MEDIUM);
     }
     public void switchToQuizHard(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -149,7 +135,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.hardQuestionDisplay();
+        controller.questionDisplayDifficulty(Difficulty.HARD);
     }
     public void switchToQuizRandom(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -160,7 +146,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.randomQuestionDisplay();
+        controller.questionDisplayRandom();
     }
     public void switchToQuizMaths(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -171,7 +157,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.mathsQuestionDisplay();
+        controller.questionDisplayTopic(Topic.DISCRETE_MATHS);
     }
     public void switchToQuizCompOrg(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -182,7 +168,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.compOrgQuestionDisplay();
+        controller.questionDisplayTopic(Topic.COMP_ORG);
     }
     public void switchToQuizCompSci(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
@@ -193,7 +179,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.compSciQuestionDisplay();
+        controller.questionDisplayTopic(Topic.COMPUTER_SCIENCE);
     }
 
 
@@ -212,39 +198,7 @@ public class SwitchSceneController implements Initializable {
         progressBar.setProgress(progress);
     }
 
-
-    public void easyQuestionDisplay() {
-        int[] count = {0};
-        switchSceneButton.setVisible(false);
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 7) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.EASY);
-                if (count[0] < questions.length) {
-
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                    if (count[0] > 1) {
-                        increaseProgress();
-                    }
-                }
-
-                if (count[0] == 7) {
-                    switchSceneButton.setVisible(true);
-                    tempButton.setVisible(false);
-                }
-            }
-
-        });
-    }
-
-    public void questionDisplay(Difficulty diff) {
+    public void questionDisplayDifficulty(Difficulty diff) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
 
@@ -263,7 +217,7 @@ public class SwitchSceneController implements Initializable {
                     count[0]++;
                     if (count[0] > 1) {
                         increaseProgress();
-                        this.currentUser.storeQuestion(questions[count[0]]);
+                        //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
 
@@ -276,132 +230,71 @@ public class SwitchSceneController implements Initializable {
         });
     }
 
-
-    public void mediumQuestionDisplay() {
+    public void questionDisplayRandom() {
         int[] count = {0};
+        switchSceneButton.setVisible(false);
 
         tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
+            if (count[0] < 7) {
 
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.MEDIUM);
-                if (count[0] < questions.length) {
 
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                }
-                increaseProgress();
-            }
-        });
-    }
-    public void hardQuestionDisplay() {
-        int[] count = {0};
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.MEDIUM);
-                if (count[0] < questions.length) {
-
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                }
-                increaseProgress();
-            }
-        });
-    }
-    public void mathsQuestionDisplay() {
-        int[] count = {0};
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Topic.DISCRETE_MATHS);
-                if (count[0] < questions.length) {
-
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                }
-                increaseProgress();
-            }
-        });
-    }
-    public void compOrgQuestionDisplay() {
-        int[] count = {0};
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMP_ORG);
-                if (count[0] < questions.length) {
-
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                }
-                increaseProgress();
-            }
-        });
-    }
-    public void compSciQuestionDisplay() {
-        int[] count = {0};
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
-                if (count[0] < questions.length) {
-
-                    questionField.setText(questions[count[0]].question);
-
-                    optionA.setText(questions[count[0]].answers[0]);
-                    optionB.setText(questions[count[0]].answers[1]);
-                    optionC.setText(questions[count[0]].answers[2]);
-                    optionD.setText(questions[count[0]].answers[3]);
-                    count[0]++;
-                }
-                increaseProgress();
-            }
-        });
-    }
-
-    public void randomQuestionDisplay() {
-        final int[] count = {0};
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
+                //broken
                 Question[] questions = new Question[]{QuestionGetter.getRandomQuestion()};
                 if (count[0] < questions.length) {
+
                     questionField.setText(questions[count[0]].question);
+
                     optionA.setText(questions[count[0]].answers[0]);
                     optionB.setText(questions[count[0]].answers[1]);
                     optionC.setText(questions[count[0]].answers[2]);
                     optionD.setText(questions[count[0]].answers[3]);
                     count[0]++;
+                    if (count[0] > 1) {
+                        increaseProgress();
+                        //this.currentUser.storeQuestion(questions[count[0]]);
+                    }
                 }
-                increaseProgress();
+
+                if (count[0] == 7) {
+                    switchSceneButton.setVisible(true);
+                    tempButton.setVisible(false);
+                }
             }
+
         });
     }
 
+    public void questionDisplayTopic(Topic topic) {
+        int[] count = {0};
+        switchSceneButton.setVisible(false);
+
+        tempButton.setOnAction(e -> {
+            if (count[0] < 7) {
+
+                Question[] questions = QuestionGetter.getAllQuestionsByFilter(topic);
+                if (count[0] < questions.length) {
+
+                    questionField.setText(questions[count[0]].question);
+
+                    optionA.setText(questions[count[0]].answers[0]);
+                    optionB.setText(questions[count[0]].answers[1]);
+                    optionC.setText(questions[count[0]].answers[2]);
+                    optionD.setText(questions[count[0]].answers[3]);
+                    count[0]++;
+                    if (count[0] > 1) {
+                        increaseProgress();
+                        //this.currentUser.storeQuestion(questions[count[0]]);
+                    }
+                }
+
+                if (count[0] == 7) {
+                    switchSceneButton.setVisible(true);
+                    tempButton.setVisible(false);
+                }
+            }
+
+        });
+    }
     public void scoreCounter(ActionEvent event) {
         if (optionA.isSelected()) {
             int answer = 0;

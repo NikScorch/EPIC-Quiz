@@ -29,7 +29,7 @@ public class SwitchSceneController implements Initializable {
     @FXML
     private Button tempButton, switchSceneButton;
     @FXML
-    private Label questionField;
+    private Label questionField, firstPlace, secondPlace, thirdPlace;
     @FXML
     private RadioButton optionA, optionB, optionC, optionD;
     @FXML
@@ -53,6 +53,8 @@ public class SwitchSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
     public void switchToSubject(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/subjectScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -60,13 +62,8 @@ public class SwitchSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToInstructions(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/instructionsScreen.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
+
     public void switchToScore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/scoreScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -75,13 +72,7 @@ public class SwitchSceneController implements Initializable {
         stage.show();
     }
 
-    public void switchToPlayagain(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/playagainScreen.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
     public void switchToHello(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/hello-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -90,6 +81,7 @@ public class SwitchSceneController implements Initializable {
         stage.show();
     }
 
+
     public void switchToSettings(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/settingsScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -97,6 +89,23 @@ public class SwitchSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    public void switchToPlayagain(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/playagainScreen.fxml"));
+        root = loader.load();
+
+        SwitchSceneController controller = loader.getController();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        controller.leaderBoardSettings();
+    }
+
+
+
 
 
     public void switchToQuizEasy(ActionEvent event) throws IOException {
@@ -113,6 +122,8 @@ public class SwitchSceneController implements Initializable {
         controller.questionDisplayDifficulty(Difficulty.EASY);
 
     }
+
+
     public void switchToQuizMedium(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -126,6 +137,8 @@ public class SwitchSceneController implements Initializable {
         stage.show();
         controller.questionDisplayDifficulty(Difficulty.MEDIUM);
     }
+
+
     public void switchToQuizHard(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -137,6 +150,8 @@ public class SwitchSceneController implements Initializable {
         stage.show();
         controller.questionDisplayDifficulty(Difficulty.HARD);
     }
+
+
     public void switchToQuizRandom(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -148,6 +163,8 @@ public class SwitchSceneController implements Initializable {
         stage.show();
         controller.questionDisplayRandom();
     }
+
+
     public void switchToQuizMaths(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -159,6 +176,8 @@ public class SwitchSceneController implements Initializable {
         stage.show();
         controller.questionDisplayTopic(Topic.DISCRETE_MATHS);
     }
+
+
     public void switchToQuizCompOrg(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -170,6 +189,8 @@ public class SwitchSceneController implements Initializable {
         stage.show();
         controller.questionDisplayTopic(Topic.COMP_ORG);
     }
+
+
     public void switchToQuizCompSci(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
@@ -185,10 +206,13 @@ public class SwitchSceneController implements Initializable {
 
 
 
+
     public void exit(ActionEvent event) {
         stage = (Stage) exitPane.getScene().getWindow();
         stage.close();
     }
+
+
 
 
     @Override
@@ -197,6 +221,8 @@ public class SwitchSceneController implements Initializable {
         progress += 0.167;
         progressBar.setProgress(progress);
     }
+
+
 
     public void questionDisplayDifficulty(Difficulty diff) {
         int[] count = {0};
@@ -229,6 +255,8 @@ public class SwitchSceneController implements Initializable {
 
         });
     }
+
+
 
     public void questionDisplayRandom() {
         int[] count = {0};
@@ -264,6 +292,8 @@ public class SwitchSceneController implements Initializable {
         });
     }
 
+
+
     public void questionDisplayTopic(Topic topic) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
@@ -295,6 +325,8 @@ public class SwitchSceneController implements Initializable {
 
         });
     }
+
+
     public void scoreCounter(ActionEvent event) {
         if (optionA.isSelected()) {
             int answer = 0;
@@ -310,6 +342,9 @@ public class SwitchSceneController implements Initializable {
         }
 
     }
+
+
+
 
     public void login(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
@@ -340,6 +375,8 @@ public class SwitchSceneController implements Initializable {
         }
     }
 
+
+
     public void register(ActionEvent event) throws IOException {
     String username = registerUserTextField.getText();
     String password = registerPasswordField.getText();
@@ -363,6 +400,16 @@ public class SwitchSceneController implements Initializable {
     else{
         alert.showAndWait();
     }
+    }
+
+
+
+
+
+    public void leaderBoardSettings(){
+        firstPlace.setText("hii");
+        secondPlace.setText("no");
+        thirdPlace.setText("this was a test");
     }
 
 

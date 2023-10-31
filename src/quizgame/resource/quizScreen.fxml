@@ -49,7 +49,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Label fx:id="questionField" layoutX="11.0" layoutY="108.0" prefHeight="128.0" prefWidth="662.0" text="instructions teehee click next to begin :)" textFill="#863c79" wrapText="true">
+      <Label fx:id="questionField" layoutX="11.0" layoutY="108.0" prefHeight="128.0" prefWidth="662.0" text="INSTRUCTIONS: welcome to luna quiz, to begin please press &quot;NEXT&quot;. You have 6 questions and no time limit, have fun!" textFill="#863c79" wrapText="true">
          <font>
             <Font size="17.0" />
          </font></Label>

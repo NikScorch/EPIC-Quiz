@@ -45,6 +45,7 @@ public class LoginManager {
 
     /** Save a User object to disk */
     public static void saveUser(User user) {
+        user.saveSession();
         try {
             FileOutputStream fout = new FileOutputStream("data/" + user.username + ".user");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
@@ -93,5 +94,8 @@ public class LoginManager {
         for (User user: users) {
             System.out.println(user.username + "\t" + user.password_hash);
         }
+        Game eA = new Game();
+        Game eB = new Game();
+        System.out.println(eA.equals(eB));
     }
 }

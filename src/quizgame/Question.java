@@ -3,7 +3,7 @@ package quizgame;
 /**
  * Stores all relavant data regarding a question in a single object
  */
-public class Question {
+public class Question implements java.io.Serializable {
     String question;
     String[] answers;
     int answerIndex;

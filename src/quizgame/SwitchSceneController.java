@@ -37,8 +37,7 @@ public class SwitchSceneController implements Initializable {
     @FXML
     PasswordField passwordTextField, registerPasswordField, reEnterPasswordField;
     double progress;
-    Question[] answeredQuestions = new Question[6];
-    int easyScore = 0;
+    User currentUser;
 
     public void switchToRegister(ActionEvent event) throws IOException {
        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("resource/registerScreen.fxml")));
@@ -110,7 +109,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        controller.easyQuestionDisplay();
+        controller.questionDisplay(Difficulty.EASY);
 
     }
 
@@ -233,6 +232,38 @@ public class SwitchSceneController implements Initializable {
                     count[0]++;
                     if (count[0] > 1) {
                         increaseProgress();
+                    }
+                }
+
+                if (count[0] == 7) {
+                    switchSceneButton.setVisible(true);
+                    tempButton.setVisible(false);
+                }
+            }
+
+        });
+    }
+
+    public void questionDisplay(Difficulty diff) {
+        int[] count = {0};
+        switchSceneButton.setVisible(false);
+
+        tempButton.setOnAction(e -> {
+            if (count[0] < 7) {
+
+                Question[] questions = QuestionGetter.getAllQuestionsByFilter(diff);
+                if (count[0] < questions.length) {
+
+                    questionField.setText(questions[count[0]].question);
+
+                    optionA.setText(questions[count[0]].answers[0]);
+                    optionB.setText(questions[count[0]].answers[1]);
+                    optionC.setText(questions[count[0]].answers[2]);
+                    optionD.setText(questions[count[0]].answers[3]);
+                    count[0]++;
+                    if (count[0] > 1) {
+                        increaseProgress();
+                        this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
 
@@ -397,15 +428,19 @@ public class SwitchSceneController implements Initializable {
 
 
         if (LoginManager.userExists(username)) {
-            LoginManager.loadUser(username);
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
-            root = loader.load();
-            SwitchSceneController controller = loader.getController();
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            this.currentUser = LoginManager.loadUser(username);
+            if(currentUser.verifyPassword(password)) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
+                root = loader.load();
+                SwitchSceneController controller = loader.getController();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else {
+                alert.showAndWait();
+            }
         }
         else {
             alert.showAndWait();

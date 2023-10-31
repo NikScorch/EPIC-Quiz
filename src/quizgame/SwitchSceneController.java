@@ -247,10 +247,11 @@ public class SwitchSceneController implements Initializable {
                     }
                 }
 
-                if (count[0] == 7) {
-                    switchSceneButton.setVisible(true);
-                    tempButton.setVisible(false);
-                }
+            }
+
+            if (count[0] == 7) {
+                switchSceneButton.setVisible(true);
+                tempButton.setVisible(false);
             }
 
         });
@@ -291,8 +292,6 @@ public class SwitchSceneController implements Initializable {
 
         });
     }
-
-
 
     public void questionDisplayTopic(Topic topic) {
         int[] count = {0};

@@ -40,5 +40,10 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
+      <Button layoutX="204.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchToQuizRandom" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

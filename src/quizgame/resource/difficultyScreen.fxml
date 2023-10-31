@@ -42,11 +42,6 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="274.0" layoutY="425.0" mnemonicParsing="false" onAction="#switchToQuizRandom" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="17.0" />

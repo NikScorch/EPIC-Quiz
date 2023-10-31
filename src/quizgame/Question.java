@@ -7,6 +7,7 @@ public class Question {
     String question;
     String[] answers;
     int answerIndex;
+    int userAnswer;
     Topic topic;
     Difficulty difficulty;
 

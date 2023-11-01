@@ -36,6 +36,14 @@ public class User implements java.io.Serializable {
         return Integer.toString(enteredPassword.hashCode());
     }
 
+    public void storeQuestion(Question questionToStore) {
+        for (int i = 0; i < answeredQuestions.length; i++) {
+            if (answeredQuestions[i] == null) {
+                answeredQuestions[i] = questionToStore;
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
     }

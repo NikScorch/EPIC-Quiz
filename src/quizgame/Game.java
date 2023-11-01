@@ -1,16 +1,8 @@
 package quizgame;
 
 public class Game implements java.io.Serializable {
-    // go fuck yourself ISE
-    int inputedAnswer;
-    int score = 0;
-    int mathsScore = 0;
-    int compOrgScore = 0;
-    int compSciScore = 0;
-    int easyScore = 0;
-    int mediumScore = 0;
-    int hardScore = 0;
     Question[] questions = new Question[6];
+    Score score = new Score();
     
 
     // // calculating the overall score of the test

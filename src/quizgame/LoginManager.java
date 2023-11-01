@@ -51,6 +51,8 @@ public class LoginManager {
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(user);
             oos.close();
+            
+            System.out.println("session saved");
         } catch (Exception e) {
             e.printStackTrace();
         }

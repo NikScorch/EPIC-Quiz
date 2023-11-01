@@ -8,7 +8,8 @@ public class User implements java.io.Serializable {
     String password_hash;
     Game data = new Game();
     List<Game> pastGames = new ArrayList<Game>();
-    Difficulty difficulty = Difficulty.EASY;
+    Score lifetimeScore = new Score();
+    //Difficulty difficulty = Difficulty.EASY;
 
     public User(String username, String password) {
         this.username = username;

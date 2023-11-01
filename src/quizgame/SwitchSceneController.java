@@ -217,7 +217,6 @@ public class SwitchSceneController implements Initializable {
     }
 
     public void playAgain(ActionEvent event) throws IOException {
-        System.out.println("session saved");
         currentUser.saveSession();
         switchToSettings(event);
     }

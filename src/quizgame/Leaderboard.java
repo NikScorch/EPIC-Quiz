@@ -10,11 +10,19 @@ public class Leaderboard {
         users = LoginManager.loadAllUsers();
     }
 
+    public static void calculateIndividualScore(Game game) {
+        
+    }
+
     public static void calculateScores(User user) {
+        System.out.println("datalen "+user.data.questions.length);
+        System.out.println("pastgameslen "+user.pastGames.get(0).questions.length);
+        System.out.println("pastgameslen "+user.pastGames.get(0).questions[0].userAnswer);
         for (Game g: user.pastGames) {
             g.score = new Score();
             // Calc score for each game
             for (Question q: g.questions) {
+                q.print();
                 if (q.answerIndex == q.userAnswer) {
                     // correct answer given
                     g.score.score++;
@@ -86,7 +94,7 @@ public class Leaderboard {
         reloadUsers();
         System.out.println(users.length);
         for (User u: users) {
-            calculateScores(null);
+            calculateScores(u);
             System.out.println(u.username);
         }
         User[] topThreeUsers = getTopThree();

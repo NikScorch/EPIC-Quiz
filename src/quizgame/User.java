@@ -6,7 +6,7 @@ import java.util.List;
 public class User implements java.io.Serializable {
     String username;
     String password_hash;
-    Game data = new Game();
+    Game data;
     List<Game> pastGames = new ArrayList<Game>();
     Score lifetimeScore = new Score();
     //Difficulty difficulty = Difficulty.EASY;
@@ -14,6 +14,8 @@ public class User implements java.io.Serializable {
     public User(String username, String password) {
         this.username = username;
         this.password_hash = hashPassword(password);
+        this.pastGames.add(new Game());
+        this.data = pastGames.get(pastGames.size() - 1);
     }
 
     /** Check if an entered password matches the stored password */
@@ -40,8 +42,10 @@ public class User implements java.io.Serializable {
 
     public void saveSession() {
         // Save user session and rest session
-        this.pastGames.add(this.data);
-        this.data = new Game();
+        this.pastGames.add(new Game());
+        this.data = pastGames.get(pastGames.size() - 1);
+        // this.pastGames.add(this.data);
+        // this.data = new Game();
     }
 
 }

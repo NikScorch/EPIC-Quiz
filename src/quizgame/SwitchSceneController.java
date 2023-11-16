@@ -388,7 +388,7 @@ public class SwitchSceneController implements Initializable {
     }
 
     //was an idea to calculate the scores but :(
-    public void scoreCounter(ActionEvent event) {
+    public int scoreCounter(ActionEvent event) {
         if (optionA.isSelected()) {
             return 0;
         } else if (optionB.isSelected()) {
@@ -407,7 +407,7 @@ public class SwitchSceneController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error!");
         alert.setHeaderText("User does not exist.");
-        alert.setContentText("Invalid username, please register or recheck your username.");
+        alert.setContentText("Invalid username or password, please register or recheck your username.");
 
         if (LoginManager.userExists(username)) {
             currentUser = LoginManager.loadUser(username);
@@ -455,7 +455,7 @@ public class SwitchSceneController implements Initializable {
     public void leaderBoardSettings(){
         firstPlace.setText("Michelle");
         secondPlace.setText("Darragh");
-        thirdPlace.setText("this was a test");
+        thirdPlace.setText("Cormac");
     }
 
 }

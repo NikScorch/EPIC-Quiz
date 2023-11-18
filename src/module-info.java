@@ -9,4 +9,6 @@ module quizgame {
 
     opens quizgame to javafx.fxml;
     exports quizgame;
+    exports quizgame.SceneController;
+    opens quizgame.SceneController;
 }

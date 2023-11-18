@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizgame.LoginManager;
-import quizgame.SwitchSceneController;
+import quizgame.SceneController.HelloView;
 import quizgame.User;
 
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class HelloView {
     }
 
     public void switchToRegister(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("resource/registerScreen.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneController/resource/registerScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

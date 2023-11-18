@@ -12,7 +12,7 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("resource/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("SceneController/resource/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 690, 540);
         stage.setTitle("Luna-Quiz");
         stage.setScene(scene);

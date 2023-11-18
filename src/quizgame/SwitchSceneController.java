@@ -224,15 +224,17 @@ public class SwitchSceneController implements Initializable {
     }
 
     public void playAgain(ActionEvent event) throws IOException {
-        currentUser.saveSession();
+        LoginManager.saveUser(currentUser);
+        // currentUser.saveSession();
         switchToSettings(event);
     }
 
     // this is used on the exit button to end the program and exit at the end
     public void exit(ActionEvent event) {
+        System.out.println("Program ended");
+        LoginManager.saveUser(currentUser);
         stage = (Stage) exitPane.getScene().getWindow();
         stage.close();
-        LoginManager.saveUser(currentUser);
     }
 
     //this is to increase the progressbar
@@ -388,7 +390,7 @@ public class SwitchSceneController implements Initializable {
     }
 
     //was an idea to calculate the scores but :(
-    public void scoreCounter(ActionEvent event) {
+    public int scoreCounter(ActionEvent event) {
         if (optionA.isSelected()) {
             return 0;
         } else if (optionB.isSelected()) {
@@ -437,9 +439,9 @@ public class SwitchSceneController implements Initializable {
         alert.setContentText("Re-enter your password and check for spelling errors");
 
         if (password.equals(reEnterPassword)) {
-            LoginManager.registerUser(username, password);
+            this.currentUser = LoginManager.registerUser(username, password);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/hello-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
             root = loader.load();
             SwitchSceneController controller = loader.getController();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -453,9 +455,11 @@ public class SwitchSceneController implements Initializable {
 
     //leaderboard to display users
     public void leaderBoardSettings(){
-        firstPlace.setText("Michelle");
-        secondPlace.setText("Darragh");
-        thirdPlace.setText("this was a test");
+        Leaderboard.reloadUsers();
+        User[] topThree = Leaderboard.getTopThree();
+        firstPlace.setText(topThree[0].username);
+        secondPlace.setText(topThree[1].username);
+        thirdPlace.setText(topThree[2].username);
     }
 
 }

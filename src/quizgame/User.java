@@ -9,13 +9,11 @@ public class User implements java.io.Serializable {
     Game data;
     List<Game> pastGames = new ArrayList<Game>();
     Score lifetimeScore = new Score();
-    //Difficulty difficulty = Difficulty.EASY;
 
     public User(String username, String password) {
         this.username = username;
         this.password_hash = hashPassword(password);
-        this.pastGames.add(new Game());
-        this.data = pastGames.get(pastGames.size() - 1);
+        this.data = new Game();
     }
 
     /** Check if an entered password matches the stored password */
@@ -42,10 +40,17 @@ public class User implements java.io.Serializable {
 
     public void saveSession() {
         // Save user session and rest session
-        this.pastGames.add(new Game());
-        this.data = pastGames.get(pastGames.size() - 1);
-        // this.pastGames.add(this.data);
-        // this.data = new Game();
+        // Do not accept blank game data *ever*
+        if (this.data.questions[0] != null && this.data.questions != null) {
+            try {
+                this.pastGames.add(this.data.clone());
+            } catch (CloneNotSupportedException e) {
+                // In theory this code should be unreachable
+                // God bless whoever has to debug this if it is ever executed
+                System.err.println("Game data is not cloneable, this should not be able to happen");
+                e.printStackTrace();
+            }
+            this.data = new Game();
+        }
     }
-
 }

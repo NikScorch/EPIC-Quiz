@@ -52,7 +52,7 @@ public class LoginManager {
             oos.writeObject(user);
             oos.close();
             
-            System.out.println("session saved");
+            System.out.println("User saved to disk");
         } catch (Exception e) {
             e.printStackTrace();
         }

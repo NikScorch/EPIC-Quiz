@@ -15,14 +15,11 @@ public class Leaderboard {
     }
 
     public static void calculateScores(User user) {
-        System.out.println("datalen "+user.data.questions.length);
-        System.out.println("pastgameslen "+user.pastGames.get(0).questions.length);
-        System.out.println("pastgameslen "+user.pastGames.get(0).questions[0].userAnswer);
+        user.lifetimeScore = new Score();   // Reset lifetime score
         for (Game g: user.pastGames) {
-            g.score = new Score();
+            g.score = new Score();          // Reset this games' score
             // Calc score for each game
             for (Question q: g.questions) {
-                q.print();
                 if (q.answerIndex == q.userAnswer) {
                     // correct answer given
                     g.score.score++;
@@ -59,23 +56,34 @@ public class Leaderboard {
             user.lifetimeScore.scoreMedium += g.score.scoreMedium;
             user.lifetimeScore.scoreHard += g.score.scoreHard;
         }
+        // Accommodate for number of games played
+        user.lifetimeScore.score /= user.pastGames.size();
+        user.lifetimeScore.scoreMaths /= user.pastGames.size();
+        user.lifetimeScore.scoreCompOrg /= user.pastGames.size();
+        user.lifetimeScore.scoreCompSci /= user.pastGames.size();
+        user.lifetimeScore.scoreEasy /= user.pastGames.size();
+        user.lifetimeScore.scoreMedium /= user.pastGames.size();
+        user.lifetimeScore.scoreHard /= user.pastGames.size();
     }
 
     public static User[] getTopThree() {
-        User[] topThree = new User[]{
-            users[0],
-            users[1],
-            users[2],
-        };
-        for (User u: Leaderboard.users) {
-            for (int i = 0; i < topThree.length; i++) {
-                if (u.lifetimeScore.score > topThree[i].lifetimeScore.score) {
-                    topThree[i] = u;
-                    System.out.println(u.username);
+        // Clone users, sort them with bubblesort according 
+        // to their lifetime score and return the top three
+        User[] topUsers = users.clone();
+
+        User swap;
+        for (int i = 0; i < topUsers.length - 1; i++) {
+            for (int j = 0; j < topUsers.length - 1 - i; j++) {
+                if (topUsers[i].lifetimeScore.score < topUsers[i + 1].lifetimeScore.score) {
+                    swap = topUsers[i];
+                    topUsers[i] = topUsers[i + 1];
+                    topUsers[i + 1] = swap;
                 }
             }
         }
-        return topThree;
+
+        // TODO: handle check if theres less than 3 registered users
+        return new User[]{topUsers[0], topUsers[1], topUsers[2]};
     }
 
     public void calc() {
@@ -89,20 +97,41 @@ public class Leaderboard {
     }
 
     public static void main(String[] args) {
-        // Leaderboard lead = new Leaderboard();
-        // lead.calc();
+
+        System.out.println("===================================");
+        User a = LoginManager.loadUser("test");
+
+        System.out.println("Number of past games: " + a.pastGames.size());
+
+        for (Game g: a.pastGames) {
+            System.out.println("Game");
+            if (g == null) {System.out.println("Game is null");}
+            if (g.questions == null) {System.out.println("Quesitons are null");}
+            if (g.questions[0] == null) {System.out.println("First question is null");}
+            if (g.questions[0].question == null) {System.out.println("First questions \"question\" data is null");}
+            for (Question q: g.questions) {
+                System.out.println("\t" + q.question);
+            }
+        }
+
+        System.out.println("First question: " + a.pastGames.get(0).questions[1].question);
+        // calculateScores(a);
+
+        System.out.println("===================================");
+
         reloadUsers();
-        System.out.println(users.length);
+
+
         for (User u: users) {
             calculateScores(u);
-            System.out.println(u.username);
+            System.out.println("user: " + u.username);
+            System.out.println(" - gamesplayed: " + u.pastGames.size());
         }
         User[] topThreeUsers = getTopThree();
         System.out.println(topThreeUsers[2].username);
 
         for (User u: topThreeUsers) {
-            System.out.println(topThreeUsers.length);
-            System.out.println("1st" + u.password_hash);
+            System.out.println("1st: " + u.username);
         }
     }
 }

@@ -4,8 +4,8 @@ package quizgame;
  * Stores all relavant data regarding a question in a single object
  */
 public class Question {
-    public String question;
-    public String[] answers;
+    String question;
+    String[] answers;
     int answerIndex;
     Topic topic;
     Difficulty difficulty;

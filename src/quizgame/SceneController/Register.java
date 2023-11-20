@@ -41,9 +41,9 @@ public class Register {
         if(password.equals(reEnterPassword)) {
             LoginManager.registerUser(username, password);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/hello-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/hello-view.fxml"));
             root = loader.load();
-            Register controller = loader.getController();
+            //Register controller = loader.getController();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -55,7 +55,7 @@ public class Register {
     }
 
     public void switchToHello(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/hello-view.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/hello-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

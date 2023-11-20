@@ -16,13 +16,12 @@ public class Score {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
-    private Label questionField, firstPlace, secondPlace, thirdPlace;
+
     public void switchToPlayagain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/playagainScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/playagainScreen.fxml"));
         root = loader.load();
 
-        Score controller = loader.getController();
+        PlayAgain controller = loader.getController();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -31,10 +30,6 @@ public class Score {
         controller.leaderBoardSettings();
     }
 
-    public void leaderBoardSettings(){
-        firstPlace.setText("Michelle");
-        secondPlace.setText("Darragh");
-        thirdPlace.setText("this was a test");
-    }
+
 
 }

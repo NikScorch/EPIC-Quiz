@@ -40,9 +40,9 @@ public class HelloView {
         if (LoginManager.userExists(username)) {
             this.currentUser = LoginManager.loadUser(username);
             if(currentUser.verifyPassword(password)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/settingsScreen.fxml"));
                 root = loader.load();
-                HelloView controller = loader.getController();
+                //HelloView controller = loader.getController();
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -58,7 +58,7 @@ public class HelloView {
     }
 
     public void switchToRegister(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneController/resource/registerScreen.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/quizgame/SceneController/resource/registerScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -171,7 +171,9 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.DISCRETE_MATHS);
+        for (int i = 0; i < currentUser.data.questions.length; i++) {
+            currentUser.data.questions[i] = QuestionGetter.getRandomQuestion();
+        }
         controller.questionDisplay();
         //controller.questionDisplayTopic(Topic.DISCRETE_MATHS);
     }
@@ -186,7 +188,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMP_ORG);
+        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.DISCRETE_MATHS);
         controller.questionDisplay();
         // controller.questionDisplayTopic(Topic.COMP_ORG);
     }
@@ -201,7 +203,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
+        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMP_ORG);
         controller.questionDisplay();
         // controller.questionDisplayTopic(Topic.COMPUTER_SCIENCE);
     }
@@ -216,9 +218,7 @@ public class SwitchSceneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        for (int i = 0; i < currentUser.data.questions.length; i++) {
-            currentUser.data.questions[i] = QuestionGetter.getRandomQuestion();
-        }
+        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
         controller.questionDisplay();
         // controller.questionDisplayRandom();
     }

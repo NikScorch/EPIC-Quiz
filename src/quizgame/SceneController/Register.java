@@ -12,22 +12,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizgame.Gui;
 import quizgame.LoginManager;
-import quizgame.SwitchSceneController;
 import quizgame.User;
-
 import java.io.IOException;
 import java.util.Objects;
 
 public class Register {
-
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    TextField usernameTextField, registerUserTextField;
+    TextField registerUserTextField;
     @FXML
-    PasswordField passwordTextField, registerPasswordField, reEnterPasswordField;
-    User currentUser;
+    PasswordField registerPasswordField, reEnterPasswordField;
 
     public void register(ActionEvent event) throws IOException {
         String username = registerUserTextField.getText();
@@ -40,7 +36,6 @@ public class Register {
 
         if(password.equals(reEnterPassword)) {
             LoginManager.registerUser(username, password);
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/hello-view.fxml"));
             root = loader.load();
             //Register controller = loader.getController();

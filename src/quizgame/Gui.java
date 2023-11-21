@@ -16,7 +16,7 @@ public class Gui extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("SceneController/resource/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 690, 540);
         stage.setTitle("Luna-Quiz");
-        stage.getIcons().add(new Image(Gui.class.getResourceAsStream("resource/EpicQuizLogoReal.png")));
+        stage.getIcons().add(new Image(Gui.class.getResourceAsStream("SceneController/resource/EpicQuizLogoReal.png")));
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);

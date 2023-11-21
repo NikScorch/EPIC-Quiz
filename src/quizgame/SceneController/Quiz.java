@@ -15,24 +15,21 @@ import quizgame.Gui;
 import quizgame.Question;
 import quizgame.QuestionGetter;
 import quizgame.Topic;
-
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class Quiz {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private Label questionField, firstPlace, secondPlace, thirdPlace;
+    private Label questionField;
     @FXML
     private RadioButton optionA, optionB, optionC, optionD;
     @FXML
     private ProgressBar progressBar;
     @FXML
-    private Button tempButton, switchSceneButton, exitButton;
+    private Button tempButton, switchSceneButton;
     double progress;
 
     public void switchToScore(ActionEvent event) throws IOException {
@@ -42,6 +39,7 @@ public class Quiz {
         stage.setScene(scene);
         stage.show();
     }
+
     public void scoreCounter(ActionEvent event) {
         if (optionA.isSelected()) {
             int answer = 0;
@@ -55,7 +53,6 @@ public class Quiz {
         else {
             int answer = 3;
         }
-
     }
 
     public void questionDisplayDifficulty(quizgame.Difficulty diff) {
@@ -77,17 +74,13 @@ public class Quiz {
                     count[0]++;
                     if (count[0] > 0) {
                         increaseProgress();
-                        //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
-
             }
-
             if (count[0] == 6) {
                 switchSceneButton.setVisible(true);
                 tempButton.setVisible(false);
             }
-
         });
     }
 
@@ -110,16 +103,13 @@ public class Quiz {
                     count[0]++;
                     if (count[0] > 0) {
                         increaseProgress();
-                        //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
-
                 if (count[0] == 6) {
                     switchSceneButton.setVisible(true);
                     tempButton.setVisible(false);
                 }
             }
-
         });
     }
 
@@ -130,8 +120,6 @@ public class Quiz {
         tempButton.setOnAction(e -> {
             if (count[0] < 6) {
 
-
-                //broken
                 Question[] questions = new Question[6];
                 for (int i = 0; i < questions.length; i++) {
                     questions[i] = QuestionGetter.getRandomQuestion();
@@ -147,20 +135,16 @@ public class Quiz {
                     count[0]++;
                     if (count[0] > 0) {
                         increaseProgress();
-                        //this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
-
                 if (count[0] == 6) {
                     switchSceneButton.setVisible(true);
                     tempButton.setVisible(false);
                 }
             }
-
         });
     }
 
-    //public void initialize(URL url, ResourceBundle resourceBundle) {}
     public void increaseProgress() {
         progress += 0.167;
         progressBar.setProgress(progress);

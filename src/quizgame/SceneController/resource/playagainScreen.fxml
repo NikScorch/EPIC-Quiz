@@ -26,7 +26,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button alignment="CENTER" layoutX="203.0" layoutY="367.0" mnemonicParsing="false" onAction="#playAgain" prefHeight="52.0" prefWidth="283.0" style="-fx-background-color: #f8ecf8;" text="PLAY AGAIN" textFill="#c665b1">
+      <Button alignment="CENTER" layoutX="203.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="52.0" prefWidth="283.0" style="-fx-background-color: #f8ecf8;" text="PLAY AGAIN" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>

@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import quizgame.Gui;
-
+import quizgame.User;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -21,7 +21,8 @@ public class PlayAgain {
     @FXML
     private AnchorPane exitPane;
     @FXML
-    private Label questionField, firstPlace, secondPlace, thirdPlace;
+    private Label firstPlace, secondPlace, thirdPlace;
+    User currentUser;
 
     public void switchToSettings(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/settingsScreen.fxml")));
@@ -35,6 +36,11 @@ public class PlayAgain {
         firstPlace.setText("Michelle");
         secondPlace.setText("Darragh");
         thirdPlace.setText("this was a test");
+    }
+
+    public void playAgain(ActionEvent event) throws IOException {
+        currentUser.saveSession();
+        switchToSettings(event);
     }
 
     public void exit(ActionEvent event) {

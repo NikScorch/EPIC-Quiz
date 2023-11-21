@@ -1,6 +1,8 @@
 package quizgame;
 
 public class Leaderboard {
+
+    /*
     static User[] users;
     public Leaderboard() {
         reloadUsers();
@@ -105,4 +107,6 @@ public class Leaderboard {
             System.out.println("1st" + u.password_hash);
         }
     }
+    */
+
 }

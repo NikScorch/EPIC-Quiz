@@ -5,13 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LoginManager {
     /** Create a new user, save them to disk, return new user */
-    public static User registerUser(String username, String password) {
+    public static User registerUser(String username, String password) throws NoSuchAlgorithmException {
         User newUser = new User(username, password);
         saveUser(newUser);
         return newUser;
@@ -59,7 +60,7 @@ public class LoginManager {
     }
 
     /** Load a User from disk */
-    public static User loadUser(String username) {
+    public static User loadUser(String username) throws NoSuchAlgorithmException {
         User user;
         try {
             FileInputStream fin = new FileInputStream("data/" + username + ".user");
@@ -74,7 +75,7 @@ public class LoginManager {
     }
 
     /** Retrieve an array of all users */
-    public static User[] loadAllUsers() {
+    public static User[] loadAllUsers() throws NoSuchAlgorithmException {
         String[] usernames = getUsers();
         User[] users = new User[usernames.length];
         for (int i = 0; i < usernames.length; i++) {
@@ -84,7 +85,7 @@ public class LoginManager {
     }
 
     // Testing purposes only
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         new LoginManager();
         User a = new User("debug", "debug_password");
         LoginManager.saveUser(a);

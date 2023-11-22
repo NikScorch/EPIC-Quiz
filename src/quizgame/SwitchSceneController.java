@@ -16,7 +16,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class SwitchSceneController implements Initializable {
+public class SwitchSceneController {
+/*
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -457,5 +458,5 @@ public class SwitchSceneController implements Initializable {
         secondPlace.setText("Darragh");
         thirdPlace.setText("Cormac");
     }
-
+*/
 }

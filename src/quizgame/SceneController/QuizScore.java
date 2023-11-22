@@ -5,13 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class Score {
+public class QuizScore {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Label scoreLabel;
 
     public void switchToPlayagain(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/playagainScreen.fxml"));
@@ -23,4 +25,8 @@ public class Score {
         stage.show();
         controller.leaderBoardSettings();
     }
+    public void displayScore() {
+        scoreLabel.setText(String.valueOf(Quiz.score));
+    }
+
 }

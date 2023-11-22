@@ -1,14 +1,16 @@
 package quizgame;
 
+import java.security.NoSuchAlgorithmException;
+
 public class Leaderboard {
 
-    /*
+
     static User[] users;
-    public Leaderboard() {
+    public Leaderboard() throws NoSuchAlgorithmException {
         reloadUsers();
     }
 
-    public static void reloadUsers() {
+    public static void reloadUsers() throws NoSuchAlgorithmException {
         users = LoginManager.loadAllUsers();
     }
 
@@ -90,7 +92,7 @@ public class Leaderboard {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         // Leaderboard lead = new Leaderboard();
         // lead.calc();
         reloadUsers();
@@ -107,6 +109,5 @@ public class Leaderboard {
             System.out.println("1st" + u.password_hash);
         }
     }
-    */
 
 }

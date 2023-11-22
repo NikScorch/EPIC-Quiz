@@ -1,8 +1,17 @@
 package quizgame;
 
-public class Game implements java.io.Serializable {
-    Question[] questions = new Question[6];
+public class Game implements java.io.Serializable, Cloneable {
+    public Question[] questions = new Question[6];
     Score score = new Score();
+
+    protected Game clone() throws CloneNotSupportedException {
+        return (Game) super.clone();
+    }
+}
+
+//public class Game implements java.io.Serializable {
+//    public Question[] questions = new Question[6];
+//    Score score = new Score();
     
 
     // // calculating the overall score of the test
@@ -92,4 +101,4 @@ public class Game implements java.io.Serializable {
     //     }
     //     return hardScore;
     // }
-}
+//}

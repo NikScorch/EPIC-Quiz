@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import quizgame.LoginManager;
 import quizgame.User;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class HelloView {
@@ -25,7 +26,7 @@ public class HelloView {
     PasswordField passwordTextField;
     User currentUser;
 
-    public void login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         Alert alert = new Alert(Alert.AlertType.ERROR);

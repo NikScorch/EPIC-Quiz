@@ -14,6 +14,7 @@ import quizgame.Gui;
 import quizgame.LoginManager;
 import quizgame.User;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class Register {
@@ -25,7 +26,7 @@ public class Register {
     @FXML
     PasswordField registerPasswordField, reEnterPasswordField;
 
-    public void register(ActionEvent event) throws IOException {
+    public void register(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         String username = registerUserTextField.getText();
         String password = registerPasswordField.getText();
         String reEnterPassword = reEnterPasswordField.getText();

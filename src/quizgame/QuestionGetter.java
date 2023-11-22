@@ -1,5 +1,9 @@
 package quizgame;
 
+//import org.apache.commons.csv.CSVFormat;
+//import org.apache.commons.csv.CSVParser;
+//import org.apache.commons.csv.CSVRecord;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,10 +13,9 @@ import java.io.FileNotFoundException;
 public class QuestionGetter {
     /*
      * Make an array of Question classes
-     * This is our Question bank, it looks horrendous but it will have to do
      * When defining a new entry, the format is as follows:
-     * new Question("How many legs does a dog have?", 
-     *               new String[]{"2","4","7","5"}, 1, 
+     * new Question("How many legs does a dog have?",
+     *               new String[]{"2","4","7","5"}, 1,
      *               Topic.COMP_ORG, Difficulty.EASY),
      */
     public static Question[] questions;
@@ -22,7 +25,7 @@ public class QuestionGetter {
     }
     public static void loadQuestions(String fileName) {
         Scanner file;
-        // Bad code that attempts to find which file we are editing
+
         try {
             file = new Scanner(new File(fileName));
         } catch (FileNotFoundException e) {
@@ -36,17 +39,14 @@ public class QuestionGetter {
             }
         }
         file.useDelimiter(",");
-        /*
-         * I have spent seven days trying to make this work but no matter what i do, csv has decidede i should go fuck myself
-         * please explain why scanner is unable to split at both line ends and semicolons
-         */
+
         for (int i = 0; i < 8; i++) {
             file.next();        // Remove file header
         }
         List<Question> data = new ArrayList<Question>();
 
         while (file.hasNext()) {
-            // This disgusting line converts each line in the csv file into question classes
+            // This line converts each line in the csv file into question classes
             data.add(new Question(
                 file.next().substring(1), 
                 new String[]{
@@ -156,8 +156,5 @@ public class QuestionGetter {
         for (Question q: questions) {
             q.print();
         }
-
-
     }
-
 }

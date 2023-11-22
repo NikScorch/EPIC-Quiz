@@ -6,7 +6,8 @@ package quizgame;
 public class Question {
     public String question;
     public String[] answers;
-    int answerIndex;
+    public int userAnswer;
+    public int answerIndex;
     Topic topic;
     Difficulty difficulty;
 

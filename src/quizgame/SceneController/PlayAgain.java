@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import quizgame.Gui;
+import quizgame.LoginManager;
 import quizgame.User;
 import java.io.IOException;
 import java.util.Objects;
@@ -46,6 +47,7 @@ public class PlayAgain {
     public void exit(ActionEvent event) {
         stage = (Stage) exitPane.getScene().getWindow();
         stage.close();
+        LoginManager.saveUser(currentUser);
     }
 
 }

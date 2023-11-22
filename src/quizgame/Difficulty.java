@@ -1,7 +1,7 @@
 package quizgame;
 
 /** Indicator for the difficulty of a question */
-public enum Difficulty {
+public enum Difficulty implements Filter {
     EASY,
     MEDIUM,
     HARD;

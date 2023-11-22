@@ -164,6 +164,7 @@ public class Quiz {
                 if (count[0] == 6) {
                     switchSceneButton.setVisible(true);
                     tempButton.setVisible(false);
+
                 }
             }
         });

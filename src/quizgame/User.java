@@ -68,8 +68,8 @@ public class User implements java.io.Serializable {
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        System.out.println("Entered password: " + "kelly123 \n" +
-                "this the encripted one yoooo: "+ hashPassword("kelly123"));
+        System.out.println("Entered password: " + "michellePassword \n" +
+                "encrypted password : "+ hashPassword("michellePassword"));
     }
 
 }

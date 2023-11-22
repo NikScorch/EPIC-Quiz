@@ -36,31 +36,6 @@ public class SwitchSceneController implements Initializable {
     PasswordField passwordTextField, registerPasswordField, reEnterPasswordField;
     double progress;
     static User currentUser;
-    public void switchToRegister(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("resource/registerScreen.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    // switches to the difficulty screen
-
-    public void switchToDifficulty(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/difficultyScreen.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    //switches to the subject screen
-    public void switchToSubject(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/subjectScreen.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     //switches to the score screen
     public void switchToScore(ActionEvent event) throws IOException {
@@ -71,162 +46,101 @@ public class SwitchSceneController implements Initializable {
         else if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 2; }
         else { currentUser.data.questions[5].userAnswer = 3; }
 
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/scoreScreen.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        loadScene(event, "/quizgame/resource/scoreScreen.fxml");
     }
 
-    //switches to the main beginning screen
-    public void switchToHello(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/hello-view.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    // Infer what button what selected and change the scene accordingly
+    public void pageSelector(ActionEvent event) throws IOException {
+        pageSelector(event, null);
+    }
+    public void pageSelector(ActionEvent event, String id) throws IOException {
+        if (id == null) {
+            id = ( (Button) event.getSource() ).getId();
+        }
+        switch (id) {
+            case "hellopage":
+                loadScene(event, "/quizgame/resource/hello-view.fxml");
+                break;
+            case "registerButton":
+                loadScene(event, "/quizgame/resource/registerScreen.fxml");
+                break;
+            case "settings":
+                loadScene(event, "/quizgame/resource/settingsScreen.fxml");
+                break;
+            case "difficulty":
+                loadScene(event, "/quizgame/resource/difficultyScreen.fxml");
+                break;
+            case "subject":
+                loadScene(event, "/quizgame/resource/subjectScreen.fxml");
+                break;
+            case "playagain":
+                SwitchSceneController controller = loadScene(event, "/quizgame/resource/playagainScreen.fxml");
+                controller.leaderBoardSettings();
+                break;
+            case "easy":
+                loadQuizScene(event, Difficulty.EASY);
+                break;
+            case "medium":
+                loadQuizScene(event, Difficulty.MEDIUM);
+                break;
+            case "hard":
+                loadQuizScene(event, Difficulty.HARD);
+                break;
+            case "discrete_maths":
+                loadQuizScene(event, Topic.DISCRETE_MATHS);
+                break;
+            case "comp_org":
+                loadQuizScene(event, Topic.COMP_ORG);
+                break;
+            case "comp_sci":
+                loadQuizScene(event, Topic.COMPUTER_SCIENCE);
+                break;
+            case "random":
+                loadQuizScene(event);
+                break;
+            default:
+                System.out.println("Id not found" + id);
+                break;
+        }
     }
 
-    //switches to the setting screen
-    public void switchToSettings(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/settingsScreen.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    //switches to the play again screen
-    public void switchToPlayagain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/playagainScreen.fxml"));
-        root = loader.load();
-
-        SwitchSceneController controller = loader.getController();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        controller.leaderBoardSettings();
-    }
-
-    //when easy difficulty is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizEasy(ActionEvent event) throws IOException {
-        // root =
-        // FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-
-        SwitchSceneController controller = loader.getController();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.EASY);
-        controller.questionDisplay();
-
-    }
-
-    //when medium difficulty is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizMedium(ActionEvent event) throws IOException {
-        // root =
-        // FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-
-        SwitchSceneController controller = loader.getController();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.MEDIUM);
-        controller.questionDisplay();
-    }
-
-    //when hard difficulty is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizHard(ActionEvent event) throws IOException {
-        // root =
-        // FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
+    SwitchSceneController loadScene(ActionEvent event, String resourceFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceFile));
         root = loader.load();
         SwitchSceneController controller = loader.getController();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Difficulty.HARD);
-        controller.questionDisplay();
+        return controller;
     }
 
-
-    //when random is selected, it switches to the quiz screen and calls the random question display method
-    public void switchToQuizRandom(ActionEvent event) throws IOException {
-        //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-        SwitchSceneController controller = loader.getController();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void loadQuizScene(ActionEvent event) throws IOException {
+        loadQuizScene(event, null);
+    }
+    public void loadQuizScene(ActionEvent event, Filter filter) throws IOException {
+        SwitchSceneController controller = loadScene(event, "/quizgame/resource/quizScreen.fxml");
         for (int i = 0; i < currentUser.data.questions.length; i++) {
-            currentUser.data.questions[i] = QuestionGetter.getRandomQuestion();
+            Question new_Question;
+            if (filter == null) {
+                new_Question = QuestionGetter.getRandomQuestion();
+            } else {
+                new_Question = QuestionGetter.getRandomQuestionByFilter(filter);
+            }
+            // Avoid duplicates, no need to check on first question
+            if (i != 0 && new_Question.question.equals(currentUser.data.questions[i - 1].question)) {
+                i--;
+                System.out.println("dupe found");
+                continue;
+            }
+            currentUser.data.questions[i] = new_Question;
         }
         controller.questionDisplay();
-        //controller.questionDisplayTopic(Topic.DISCRETE_MATHS);
-    }
-
-    //when discrete maths is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizMaths(ActionEvent event) throws IOException {
-        //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-        SwitchSceneController controller = loader.getController();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.DISCRETE_MATHS);
-        controller.questionDisplay();
-        // controller.questionDisplayTopic(Topic.COMP_ORG);
-    }
-
-    //when computer organization is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizCompOrg(ActionEvent event) throws IOException {
-        //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-        SwitchSceneController controller = loader.getController();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMP_ORG);
-        controller.questionDisplay();
-        // controller.questionDisplayTopic(Topic.COMPUTER_SCIENCE);
-    }
-
-    //when computer science is selected, it switches to the quiz screen and calls the question display method
-    public void switchToQuizCompSci(ActionEvent event) throws IOException {
-        //root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("resource/quizScreen.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/quizScreen.fxml"));
-        root = loader.load();
-        SwitchSceneController controller = loader.getController();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
-        controller.questionDisplay();
-        // controller.questionDisplayRandom();
     }
 
     public void playAgain(ActionEvent event) throws IOException {
         LoginManager.saveUser(currentUser);
-        // currentUser.saveSession();
-        switchToSettings(event);
+        pageSelector(event, "settings");
     }
 
     // this is used on the exit button to end the program and exit at the end
@@ -287,122 +201,6 @@ public class SwitchSceneController implements Initializable {
         });
     }
 
-    public void questionDisplayDifficulty(Difficulty diff) {
-        int[] count = { 0 };
-        switchSceneButton.setVisible(false);
-
-        tempButton.setOnAction(e -> {
-            System.out.println("pressed");
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(diff);
-                if (count[0] < this.currentUser.data.questions.length) {
-
-                    questionField.setText(this.currentUser.data.questions[count[0]].question);
-
-                    optionA.setText(this.currentUser.data.questions[count[0]].answers[0]);
-                    optionB.setText(this.currentUser.data.questions[count[0]].answers[1]);
-                    optionC.setText(this.currentUser.data.questions[count[0]].answers[2]);
-                    optionD.setText(this.currentUser.data.questions[count[0]].answers[3]);
-                    count[0]++;
-                    if (count[0] > 0) {
-                        increaseProgress();
-                        // this.currentUser.storeQuestion(questions[count[0]]);
-                    }
-                }
-
-            }
-
-            if (count[0] == 6) {
-                switchSceneButton.setVisible(true);
-                tempButton.setVisible(false);
-            }
-
-        });
-    }
-
-    public void questionDisplayRandom() {
-        int[] count = { 0 };
-        switchSceneButton.setVisible(false);
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                // broken
-                Question[] questions = new Question[6];
-                for (int i = 0; i < questions.length; i++) {
-                    questions[i] = QuestionGetter.getRandomQuestion();
-                }
-                if (count[0] < this.currentUser.data.questions.length) {
-
-                    questionField.setText(this.currentUser.data.questions[count[0]].question);
-
-                    optionA.setText(this.currentUser.data.questions[count[0]].answers[0]);
-                    optionB.setText(this.currentUser.data.questions[count[0]].answers[1]);
-                    optionC.setText(this.currentUser.data.questions[count[0]].answers[2]);
-                    optionD.setText(this.currentUser.data.questions[count[0]].answers[3]);
-                    count[0]++;
-                    // if (count[0] > 0) {
-                    // // this.currentUser.storeQuestion(questions[count[0]]);
-                    increaseProgress();
-                    // }
-                }
-
-                if (count[0] == 6) {
-                    switchSceneButton.setVisible(true);
-                    tempButton.setVisible(false);
-                }
-            }
-
-        });
-    }
-
-    public void questionDisplayTopic(Topic topic) {
-        int[] count = { 0 };
-        switchSceneButton.setVisible(false);
-
-        tempButton.setOnAction(e -> {
-            if (count[0] < 6) {
-
-                Question[] questions = QuestionGetter.getAllQuestionsByFilter(topic);
-                if (count[0] < this.currentUser.data.questions.length) {
-
-                    questionField.setText(this.currentUser.data.questions[count[0]].question);
-
-                    optionA.setText(this.currentUser.data.questions[count[0]].answers[0]);
-                    optionB.setText(this.currentUser.data.questions[count[0]].answers[1]);
-                    optionC.setText(this.currentUser.data.questions[count[0]].answers[2]);
-                    optionD.setText(this.currentUser.data.questions[count[0]].answers[3]);
-                    count[0]++;
-                    if (count[0] > 0) {
-                        increaseProgress();
-                        // this.currentUser.storeQuestion(questions[count[0]]);
-                    }
-                }
-
-                if (count[0] == 6) {
-                    switchSceneButton.setVisible(true);
-                    tempButton.setVisible(false);
-                }
-            }
-
-        });
-    }
-
-    //was an idea to calculate the scores but :(
-    public int scoreCounter(ActionEvent event) {
-        if (optionA.isSelected()) {
-            return 0;
-        } else if (optionB.isSelected()) {
-            return 1;
-        } else if (optionC.isSelected()) {
-            return 2;
-        } else {
-            return 3;
-        }
-
-    }
-
     public void login(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
@@ -414,13 +212,7 @@ public class SwitchSceneController implements Initializable {
         if (LoginManager.userExists(username)) {
             currentUser = LoginManager.loadUser(username);
             if (currentUser.verifyPassword(password)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
-                root = loader.load();
-                SwitchSceneController controller = loader.getController();
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                pageSelector(event, "settings");
             } else {
                 alert.showAndWait();
             }
@@ -440,14 +232,7 @@ public class SwitchSceneController implements Initializable {
 
         if (password.equals(reEnterPassword)) {
             this.currentUser = LoginManager.registerUser(username, password);
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resource/settingsScreen.fxml"));
-            root = loader.load();
-            SwitchSceneController controller = loader.getController();
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            pageSelector(event, "settings");
         } else {
             alert.showAndWait();
         }

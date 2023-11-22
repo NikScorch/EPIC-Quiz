@@ -15,17 +15,17 @@
                 <Font name="System Bold" size="33.0" />
             </font>
         </Label>
-        <Button layoutX="202.0" layoutY="216.0" mnemonicParsing="false" onAction="#switchToQuizMaths" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
+        <Button fx:id="discrete_maths" layoutX="202.0" layoutY="216.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToQuizCompOrg" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
+        <Button fx:id="comp_org" layoutX="202.0" layoutY="286.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchToQuizCompSci" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
+        <Button fx:id="comp_sci" layoutX="202.0" layoutY="356.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
@@ -40,7 +40,7 @@
             <Image url="@EpicQuizLogoReal.png" />
          </image>
       </ImageView>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
+      <Button fx:id="settings" layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

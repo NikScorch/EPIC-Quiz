@@ -29,7 +29,7 @@
             <Font name="Cambria Bold" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToPlayagain" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
+      <Button fx:id="playagain" layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

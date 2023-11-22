@@ -15,12 +15,12 @@
             <Font name="Consolas Bold" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="204.0" layoutY="231.0" mnemonicParsing="false" onAction="#switchToDifficulty" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="DIFFICULTY" textFill="#c665b1">
+      <Button fx:id="difficulty" layoutX="204.0" layoutY="231.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="DIFFICULTY" textFill="#c665b1">
          <font>
             <Font name="Consolas" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="204.0" layoutY="331.0" mnemonicParsing="false" onAction="#switchToSubject" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="SUBJECT" textFill="#c665b1">
+      <Button fx:id="subject" layoutX="204.0" layoutY="331.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="SUBJECT" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>
@@ -35,12 +35,12 @@
             <Image url="@EpicQuizLogoReal.png" />
          </image>
       </ImageView>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToHello" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
+      <Button fx:id="hellopage" layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="204.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchToQuizRandom" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+      <Button fx:id="random" layoutX="204.0" layoutY="431.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>

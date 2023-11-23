@@ -17,7 +17,7 @@ public class QuizDifficulty {
     private Scene scene;
     private Parent root;
     double progress;
-    static User currentUser;
+    //static User currentUser;
     public void switchToQuizEasy(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/quizScreen.fxml"));
@@ -28,8 +28,8 @@ public class QuizDifficulty {
         stage.setScene(scene);
         stage.show();
         //currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(quizgame.Difficulty.EASY);
-        controller.questionDisplay();
-        //controller.questionDisplayDifficulty(quizgame.Difficulty.EASY);
+        //controller.questionDisplay();
+        controller.questionDisplayDifficulty(quizgame.Difficulty.EASY);
     }
 
     public void switchToQuizMedium(ActionEvent event) throws IOException {

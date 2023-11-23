@@ -14,6 +14,7 @@ import quizgame.LoginManager;
 import quizgame.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.List;
@@ -38,13 +39,18 @@ public class PlayAgain {
 
     public void leaderBoardSettings() throws NoSuchAlgorithmException {
 
-    /*    LoginManager.loadAllUsers();
-        for (int i = 0; i < LoginManager.loadAllUsers().length; i++ ) {
-            if (User.score[i] > User.score[i + 1]) {
-
-            }
+        User[] user = LoginManager.loadAllUsers();
+        Arrays.sort(user, (o1, o2) -> Integer.compare(o2.getScore(), o1.getScore()));
+        if (user.length > 0) {
+            firstPlace.setText(user[0].getUsername());
         }
-    */
+        if (user.length > 1) {
+            secondPlace.setText(user[1].getUsername());
+        }
+        if (user.length > 2) {
+            thirdPlace.setText(user[2].getUsername());
+        }
+
 //        List<User> allUsers = List.of((LoginManager.loadAllUsers()));
 //        allUsers.sort(Comparator.comparingInt(User::getScore).reversed());
 //        if (!allUsers.isEmpty()) {
@@ -81,5 +87,6 @@ public class PlayAgain {
         stage.close();
         LoginManager.saveUser(HelloView.currentUser);
     }
+
 
 }

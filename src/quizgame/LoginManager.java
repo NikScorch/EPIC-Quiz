@@ -46,7 +46,7 @@ public class LoginManager {
 
     /** Save a User object to disk */
     public static void saveUser(User user) {
-        user.saveSession();
+        //user.saveSession();
         try {
             FileOutputStream fout = new FileOutputStream("data/" + user.username + ".txt");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
@@ -61,7 +61,7 @@ public class LoginManager {
 
     /** Load a User from disk */
     public static User loadUser(String username) throws NoSuchAlgorithmException {
-        User user;
+        User user = null;
         try {
             FileInputStream fin = new FileInputStream("data/" + username + ".txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
@@ -101,6 +101,6 @@ public class LoginManager {
 //        Game eA = new Game();
 //        Game eB = new Game();
 //        System.out.println(eA.equals(eB));
-        System.out.println(Arrays.toString(getUsers()));
+        System.out.println(Arrays.toString(loadAllUsers()));
     }
 }

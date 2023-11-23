@@ -33,7 +33,6 @@ public class Quiz {
     double progress;
     static User currentUser;
     //public static int score = 0;
-    int selectedOption = -1;
     int answer;
 
     public void switchToScore(ActionEvent event) throws IOException {
@@ -55,22 +54,6 @@ public class Quiz {
         controller.displayScore();
     }
 
-    public void scoreCounter(ActionEvent event) {
-
-        if (optionA.isSelected()) {
-            int answer = 0;
-        }
-        else if (optionB.isSelected()) {
-            int answer = 1;
-        }
-        else if (optionC.isSelected()) {
-            int answer = 2;
-        }
-        else {
-            int answer = 3;
-        }
-    }
-
     public void questionDisplayDifficulty(quizgame.Difficulty diff) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
@@ -90,6 +73,12 @@ public class Quiz {
                     count[0]++;
                     if (count[0] > 0) {
                         increaseProgress();
+                    }
+                    if (count[0] != 0) {
+                        if (answer == questions[count[0]- 1].answerIndex) {
+                            User.score++;
+                            System.out.println(User.score);
+                        }
                     }
                 }
             }
@@ -119,6 +108,12 @@ public class Quiz {
                     count[0]++;
                     if (count[0] > 0) {
                         increaseProgress();
+                    }
+                    if (count[0] != 0) {
+                        if (answer == questions[count[0]- 1].answerIndex) {
+                            User.score++;
+                            System.out.println(User.score);
+                        }
                     }
                 }
                 if (count[0] == 6) {
@@ -170,8 +165,8 @@ public class Quiz {
         });
     }
 
-    //TODO: make this fucking work its been weeks i cannot rn, go kys.
-    public void questionDisplay() {
+
+    /*public void questionDisplay() {
         int[] count = { 0 };
         switchSceneButton.setVisible(false);
 
@@ -224,7 +219,7 @@ public class Quiz {
             }
 
         });
-    }
+    }*/
     public void increaseProgress() {
         progress += 0.167;
         progressBar.setProgress(progress);

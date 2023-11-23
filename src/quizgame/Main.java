@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         loadDll();
         extractFile("/data/questions.csv");
-        quizgame.Gui.main(args);
+        quizgame.gui.Gui.main(args);
     }
 
     public static void loadDll() {

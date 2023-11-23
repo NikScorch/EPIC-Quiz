@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SwitchSceneController">
+<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.gui.SwitchSceneController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: c665b1;">
          <children>

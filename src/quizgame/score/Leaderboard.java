@@ -1,4 +1,9 @@
-package quizgame;
+package quizgame.score;
+
+import quizgame.question.Question;
+import quizgame.user.Game;
+import quizgame.user.LoginManager;
+import quizgame.user.User;
 
 public class Leaderboard {
     static User[] users;

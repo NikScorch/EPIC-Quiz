@@ -1,4 +1,4 @@
-package quizgame;
+package quizgame.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import quizgame.question.Difficulty;
+import quizgame.question.Filter;
+import quizgame.question.Question;
+import quizgame.question.QuestionGetter;
+import quizgame.question.Topic;
+import quizgame.score.Leaderboard;
+import quizgame.user.LoginManager;
+import quizgame.user.User;
 
 import java.io.IOException;
 import java.net.URL;

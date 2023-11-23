@@ -37,6 +37,7 @@ rm -rf out/*
 wait
 
 # Build variables
+JAVA_SRC=`tree -if --noreport --gitignore src | grep ".java"`
 JAR_DIR="lib/javafx-sdk-21/lib"
 LIB_DIR_SRC="lib/javafx-sdk-21/bin"
 LIB_DIR_DEST="bin"
@@ -69,7 +70,23 @@ cp $LIB_DIR_SRC/*.$LIB_FILE_EXT out/$LIB_DIR_DEST/
 
 # Compile java source files
 echo "Compiling Java source code"
-javac -d out/ -sourcepath src src/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+
+# calc compile depth
+# DEPTH=`find src | grep ".java" | sort -nr | head -n 1 | tr -cd "/" | wc -m`
+# JAVA_SRC="src"
+# for ((i = 0 ; i < $DEPTH; i++)); do
+#     JAVA_SRC=$JAVA_SRC"/*"
+# done
+# JAVA_SRC=$JAVA_SRC".java"
+# echo "JAVA_DEPTH: " $DEPTH
+# echo "JAVA_SRC: " "$JAVA_SRC"
+# javac -d out/ -sourcepath src $JAVA_SRC --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+
+for SRC_FILE in $JAVA_SRC; do
+    javac -d out/ -sourcepath src $SRC_FILE --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+done
+
+# javac -d out/ -sourcepath src src/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
 
 # File Work
 echo "Completing file tree structure"

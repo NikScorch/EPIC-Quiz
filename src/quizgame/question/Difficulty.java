@@ -1,4 +1,4 @@
-package quizgame;
+package quizgame.question;
 
 /** Indicator for the difficulty of a question */
 public enum Difficulty implements Filter {

@@ -1,10 +1,11 @@
-package quizgame;
+package quizgame.gui;
 
 import javafx.application.Application;
 //import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quizgame.question.QuestionGetter;
 import javafx.scene.image.Image;
 
 import java.io.IOException;

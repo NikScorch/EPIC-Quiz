@@ -1,4 +1,4 @@
-package quizgame;
+package quizgame.user;
 
 import java.io.File;
 import java.io.FileInputStream;

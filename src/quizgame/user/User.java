@@ -1,14 +1,17 @@
-package quizgame;
+package quizgame.user;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import quizgame.question.Question;
+import quizgame.score.Score;
+
 public class User implements java.io.Serializable {
-    String username;
-    String password_hash;
-    Game data;
-    List<Game> pastGames = new ArrayList<Game>();
-    Score lifetimeScore = new Score();
+    public String username;
+    public String password_hash;
+    public Game data;
+    public List<Game> pastGames = new ArrayList<Game>();
+    public Score lifetimeScore = new Score();
 
     public User(String username, String password) {
         this.username = username;

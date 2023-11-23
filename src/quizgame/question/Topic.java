@@ -1,4 +1,4 @@
-package quizgame;
+package quizgame.question;
 
 /** Indicator for the topic of a question */
 public enum Topic implements Filter {

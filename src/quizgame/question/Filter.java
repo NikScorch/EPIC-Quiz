@@ -1,4 +1,4 @@
-package quizgame;
+package quizgame.question;
 
 /**
  * QuestionFilter

@@ -62,17 +62,17 @@
                   <Font name="Consolas Bold" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="firstPlace" alignment="CENTER" layoutX="11.0" layoutY="20.0" prefHeight="34.0" prefWidth="374.0" text="yurr" textFill="#b953a5" GridPane.columnIndex="1">
+            <Label fx:id="firstPlace" alignment="CENTER" layoutX="11.0" layoutY="20.0" prefHeight="34.0" prefWidth="374.0" text="a" textFill="#b953a5" GridPane.columnIndex="1">
                <font>
                   <Font name="Consolas Bold" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="secondPlace" alignment="CENTER" prefHeight="34.0" prefWidth="374.0" text="no" textFill="#b953a5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="secondPlace" alignment="CENTER" prefHeight="34.0" prefWidth="374.0" text="c" textFill="#b953a5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Consolas Bold" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="thirdPlace" alignment="CENTER" prefHeight="34.0" prefWidth="374.0" text="ya" textFill="#b953a5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="thirdPlace" alignment="CENTER" prefHeight="34.0" prefWidth="374.0" text="m" textFill="#b953a5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Consolas Bold" size="23.0" />
                </font>

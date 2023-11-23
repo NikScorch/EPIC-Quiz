@@ -59,7 +59,9 @@ public class LoginManager {
         }
     }
 
-    /** Load a User from disk */
+    /**
+     * Load a User from disk
+     */
     public static User loadUser(String username) throws NoSuchAlgorithmException {
         User user = null;
         try {
@@ -80,7 +82,8 @@ public class LoginManager {
         String[] usernames = getUsers();
         User[] users = new User[usernames.length];
         for (int i = 0; i < usernames.length; i++) {
-            users[i] = loadUser(usernames[i]);
+            usernames[i] = String.valueOf(loadUser(usernames[i]));
+            System.out.println(usernames[i]);
         }
         return users;
     }
@@ -102,5 +105,6 @@ public class LoginManager {
 //        Game eB = new Game();
 //        System.out.println(eA.equals(eB));
         System.out.println(Arrays.toString(loadAllUsers()));
+        System.out.println(Arrays.toString(getUsers()));
     }
 }

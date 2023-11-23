@@ -78,7 +78,7 @@ public class PlayAgain {
     }
 
     public void playAgain(ActionEvent event) throws IOException {
-        HelloView.currentUser.saveSession();
+        //HelloView.currentUser.saveSession();
         switchToSettings(event);
     }
 

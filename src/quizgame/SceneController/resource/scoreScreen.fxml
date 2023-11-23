@@ -37,5 +37,11 @@
          <font>
             <Font size="40.0" />
          </font></Label>
+      <ImageView fitHeight="248.0" fitWidth="302.0" layoutX="109.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="823.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@catto.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

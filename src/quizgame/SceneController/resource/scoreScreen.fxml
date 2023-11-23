@@ -7,32 +7,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizScore">
+<AnchorPane prefHeight="690.0" prefWidth="970.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizScore">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="690.0" style="-fx-background-color: #c665b1;">
+      <AnchorPane prefHeight="150.0" prefWidth="970.0" style="-fx-background-color: #c665b1;">
          <children>
-            <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="46.0" prefWidth="200.0" text="LUNA QUIZ" textFill="#f7abd0">
+            <Label fx:id="epicQuizLabel" layoutX="308.0" layoutY="34.0" prefHeight="82.0" prefWidth="360.0" text="LUNA QUIZ" textFill="#f7abd0">
                <font>
-                  <Font name="Consolas Bold" size="34.0" />
+                  <Font name="Consolas Bold" size="70.0" />
                </font>
             </Label>
-            <ImageView fitHeight="108.0" fitWidth="93.0" layoutX="199.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="141.0" fitWidth="135.0" layoutX="157.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@EpicQuizLogoReal.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="300.0" layoutY="138.0" text="SCORE" textFill="#ac519a">
+      <Label layoutX="409.0" layoutY="187.0" text="SCORE" textFill="#ac519a">
          <font>
-            <Font name="Cambria Bold" size="35.0" />
+            <Font name="Cambria Bold" size="50.0" />
          </font>
       </Label>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToPlayagain" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
+      <Button layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#switchToPlayagain" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Label fx:id="scoreLabel" layoutX="331.0" layoutY="288.0" text="Label" />
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="387.0" layoutY="298.0" prefHeight="58.0" prefWidth="195.0" text="Label" textFill="#965f8d">
+         <font>
+            <Font size="40.0" />
+         </font></Label>
    </children>
 </AnchorPane>

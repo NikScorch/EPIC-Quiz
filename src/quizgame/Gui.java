@@ -14,7 +14,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("SceneController/resource/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 690, 540);
+        Scene scene = new Scene(fxmlLoader.load(), 970, 690);
         stage.setTitle("Luna-Quiz");
         stage.getIcons().add(new Image(Gui.class.getResourceAsStream("SceneController/resource/EpicQuizLogoReal.png")));
         stage.setScene(scene);

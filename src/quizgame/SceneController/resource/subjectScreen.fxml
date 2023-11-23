@@ -7,42 +7,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizTopic">
+<AnchorPane prefHeight="690.0" prefWidth="970.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizTopic">
     <children>
-        <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: #c665b1;" />
-        <Label alignment="CENTER" layoutY="127.0" prefHeight="50.0" prefWidth="691.0" text="Choose subject" textFill="#7b3c98">
+        <AnchorPane prefHeight="150.0" prefWidth="970.0" style="-fx-background-color: #c665b1;" />
+        <Label alignment="CENTER" layoutX="147.0" layoutY="150.0" prefHeight="50.0" prefWidth="691.0" text="Choose subject" textFill="#7b3c98">
             <font>
-                <Font name="System Bold" size="33.0" />
+                <Font name="System Bold" size="50.0" />
             </font>
         </Label>
-        <Button layoutX="202.0" layoutY="216.0" mnemonicParsing="false" onAction="#switchToQuizMaths" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
+        <Button layoutX="306.0" layoutY="284.0" mnemonicParsing="false" onAction="#switchToQuizMaths" prefHeight="52.0" prefWidth="358.0" style="-fx-background-color: #f8ecf8;" text="Discrete Maths" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToQuizCompOrg" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
+        <Button layoutX="310.0" layoutY="401.0" mnemonicParsing="false" onAction="#switchToQuizCompOrg" prefHeight="52.0" prefWidth="358.0" style="-fx-background-color: #f8ecf8;" text="comp org" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="202.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchToQuizCompSci" prefHeight="40.0" prefWidth="287.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
+        <Button layoutX="310.0" layoutY="518.0" mnemonicParsing="false" onAction="#switchToQuizCompSci" prefHeight="52.0" prefWidth="358.0" style="-fx-background-color: #f8ecf8;" text="comp sci" textFill="#c665b1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-      <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="46.0" prefWidth="200.0" text="LUNA QUIZ" textFill="#f7abd0">
+      <Label fx:id="epicQuizLabel" layoutX="308.0" layoutY="34.0" prefHeight="46.0" prefWidth="370.0" text="LUNA QUIZ" textFill="#f7abd0">
          <font>
-            <Font name="Consolas Bold" size="34.0" />
+            <Font name="Consolas Bold" size="70.0" />
          </font>
       </Label>
-      <ImageView fitHeight="108.0" fitWidth="93.0" layoutX="199.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="141.0" fitWidth="135.0" layoutX="157.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@EpicQuizLogoReal.png" />
          </image>
       </ImageView>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
+      <Button layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
     </children>

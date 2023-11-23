@@ -10,57 +10,57 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.Quiz">
+<AnchorPane prefHeight="690.0" prefWidth="970.0" style="-fx-background-color: f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.Quiz">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: c665b1;">
+      <AnchorPane prefHeight="150.0" prefWidth="970.0" style="-fx-background-color: c665b1;">
          <children>
-            <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="46.0" prefWidth="200.0" text="LUNA QUIZ" textFill="#f7abd0">
+            <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="80.0" prefWidth="394.0" text="LUNA QUIZ" textFill="#f7abd0">
                <font>
-                  <Font name="Consolas Bold" size="34.0" />
+                  <Font name="Consolas Bold" size="69.0" />
                </font>
             </Label>
-            <ImageView fitHeight="108.0" fitWidth="93.0" layoutX="199.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="141.0" fitWidth="135.0" layoutX="157.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@EpicQuizLogoReal.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
-      <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="516.0" prefHeight="10.0" prefWidth="662.0" progress="0.0" />
-      <RadioButton fx:id="optionA" layoutX="43.0" layoutY="235.0" mnemonicParsing="false" onAction="#setOptionA" prefHeight="70.0" prefWidth="570.0" text="A" textFill="#632d59" wrapText="true">
+      <ProgressBar fx:id="progressBar" layoutX="6.0" layoutY="670.0" prefHeight="10.0" prefWidth="958.0" progress="0.0" />
+      <RadioButton fx:id="optionA" layoutX="14.0" layoutY="310.0" mnemonicParsing="false" onAction="#setOptionA" prefHeight="70.0" prefWidth="958.0" text="A" textFill="#632d59" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
          <toggleGroup>
             <ToggleGroup fx:id="answer" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="optionB" layoutX="43.0" layoutY="305.0" mnemonicParsing="false" onAction="#setOptionB" prefHeight="70.0" prefWidth="570.0" text="B" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionB" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#setOptionB" prefHeight="70.0" prefWidth="958.0" text="B" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="optionC" layoutX="43.0" layoutY="375.0" mnemonicParsing="false" onAction="#setOptionC" prefHeight="70.0" prefWidth="570.0" text="C" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionC" layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#setOptionC" prefHeight="70.0" prefWidth="958.0" text="C" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="optionD" layoutX="43.0" layoutY="445.0" mnemonicParsing="false" onAction="#setOptionD" prefHeight="70.0" prefWidth="570.0" text="D" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionD" layoutX="14.0" layoutY="564.0" mnemonicParsing="false" onAction="#setOptionD" prefHeight="70.0" prefWidth="958.0" text="D" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </RadioButton>
-      <Label fx:id="questionField" layoutX="11.0" layoutY="108.0" prefHeight="128.0" prefWidth="662.0" text="INSTRUCTIONS: welcome to luna quiz, to begin please press &quot;NEXT&quot;. You have 6 questions and no time limit, have fun!" textFill="#863c79" wrapText="true">
+      <Label fx:id="questionField" layoutX="7.0" layoutY="170.0" prefHeight="128.0" prefWidth="958.0" text="INSTRUCTIONS: welcome to luna quiz, to begin please press &quot;NEXT&quot;. You have 6 questions and no time limit, have fun!" textFill="#863c79" wrapText="true">
          <font>
-            <Font size="17.0" />
+            <Font size="25.0" />
          </font></Label>
-      <Button fx:id="tempButton" layoutX="556.0" layoutY="469.0" mnemonicParsing="false" onAction="#scoreCounterReal" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
+      <Button fx:id="tempButton" layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#scoreCounterReal" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="switchSceneButton" layoutX="549.0" layoutY="469.0" mnemonicParsing="false" onAction="#test" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #f8ecf8;" text="SCORE" textFill="#b95ea7">
+      <Button fx:id="switchSceneButton" layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#test" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="SCORE" textFill="#b95ea7">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
    </children>

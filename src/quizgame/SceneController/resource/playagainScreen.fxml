@@ -10,36 +10,36 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="exitPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.PlayAgain">
+<AnchorPane fx:id="exitPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="970.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.PlayAgain">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="690.0" style="-fx-background-color: #c665b1;">
+      <AnchorPane prefHeight="150.0" prefWidth="970.0" style="-fx-background-color: #c665b1;">
          <children>
-            <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="46.0" prefWidth="200.0" text="LUNA QUIZ" textFill="#f7abd0">
+            <Label fx:id="epicQuizLabel" layoutX="308.0" layoutY="34.0" prefHeight="82.0" prefWidth="374.0" text="LUNA QUIZ" textFill="#f7abd0">
                <font>
-                  <Font name="Consolas Bold" size="34.0" />
+                  <Font name="Consolas Bold" size="70.0" />
                </font>
             </Label>
-            <ImageView fitHeight="108.0" fitWidth="93.0" layoutX="199.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="141.0" fitWidth="135.0" layoutX="157.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@EpicQuizLogoReal.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <Button alignment="CENTER" layoutX="203.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="52.0" prefWidth="283.0" style="-fx-background-color: #f8ecf8;" text="PLAY AGAIN" textFill="#c665b1">
+      <Button alignment="CENTER" layoutX="275.0" layoutY="515.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="52.0" prefWidth="440.0" style="-fx-background-color: #f8ecf8;" text="PLAY AGAIN" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" alignment="CENTER" layoutX="203.0" layoutY="447.0" mnemonicParsing="false" onAction="#exit" prefHeight="52.0" prefWidth="283.0" style="-fx-background-color: #f8ecf8;" text="EXIT" textFill="#c665b1">
+      <Button fx:id="exitButton" alignment="CENTER" layoutX="275.0" layoutY="594.0" mnemonicParsing="false" onAction="#exit" prefHeight="52.0" prefWidth="440.0" style="-fx-background-color: #f8ecf8;" text="EXIT" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <GridPane gridLinesVisible="true" layoutX="94.0" layoutY="169.0" prefHeight="158.0" prefWidth="502.0" style="-fx-border-color: #c665b1;">
+      <GridPane gridLinesVisible="true" layoutX="217.0" layoutY="268.0" prefHeight="202.0" prefWidth="556.0" style="-fx-border-color: #c665b1;">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.4000244140625" minWidth="10.0" prefWidth="73.99998779296875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.40001220703124" minWidth="10.0" prefWidth="426.40001220703124" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.4000244140625" minWidth="10.0" prefWidth="99.200048828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="454.399951171875" minWidth="10.0" prefWidth="454.399951171875" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -79,9 +79,9 @@
             </Label>
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="6.0" layoutY="117.0" prefHeight="58.0" prefWidth="678.0" text="LEADER BOARD" textFill="#842684">
+      <Label alignment="CENTER" layoutX="139.0" layoutY="167.0" prefHeight="58.0" prefWidth="678.0" text="LEADER BOARD" textFill="#842684">
          <font>
-            <Font size="40.0" />
+            <Font name="System Bold" size="50.0" />
          </font>
       </Label>
    </children>

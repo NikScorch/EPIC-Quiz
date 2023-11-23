@@ -7,44 +7,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="690.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizDifficulty">
+<AnchorPane prefHeight="690.0" prefWidth="970.0" style="-fx-background-color: #f7abd0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizgame.SceneController.QuizDifficulty">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="691.0" style="-fx-background-color: #c665b1;">
+      <AnchorPane prefHeight="150.0" prefWidth="970.0" style="-fx-background-color: #c665b1;">
          <children>
-            <Label fx:id="epicQuizLabel" layoutX="292.0" layoutY="37.0" prefHeight="46.0" prefWidth="200.0" text="LUNA QUIZ" textFill="#f7abd0">
+            <Label fx:id="epicQuizLabel" alignment="CENTER" layoutX="308.0" layoutY="34.0" prefHeight="82.0" prefWidth="354.0" text="LUNA QUIZ" textFill="#f7abd0">
                <font>
-                  <Font name="Consolas Bold" size="34.0" />
+                  <Font name="Consolas Bold" size="70.0" />
                </font>
             </Label>
-            <ImageView fitHeight="108.0" fitWidth="93.0" layoutX="199.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="141.0" fitWidth="135.0" layoutX="157.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@EpicQuizLogoReal.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
-      <Label alignment="CENTER" layoutY="127.0" prefHeight="50.0" prefWidth="691.0" text="Choose difficulty" textFill="#7b3c98">
+      <Label alignment="CENTER" layoutX="139.0" layoutY="167.0" prefHeight="50.0" prefWidth="691.0" text="Choose difficulty" textFill="#7b3c98">
          <font>
-            <Font name="System Bold" size="33.0" />
+            <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="215.0" mnemonicParsing="false" onAction="#switchToQuizEasy" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #f8ecf8;" text="EASY" textFill="#c665b1">
+      <Button layoutX="349.0" layoutY="293.0" mnemonicParsing="false" onAction="#switchToQuizEasy" prefHeight="52.0" prefWidth="270.0" style="-fx-background-color: #f8ecf8;" text="EASY" textFill="#c665b1">
          <font>
-            <Font size="18.0" />
+            <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="274.0" layoutY="285.0" mnemonicParsing="false" onAction="#switchToQuizMedium" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #f8ecf8;" text="MEDIUM" textFill="#c665b1">
+      <Button layoutX="349.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToQuizMedium" prefHeight="52.0" prefWidth="270.0" style="-fx-background-color: #f8ecf8;" text="MEDIUM" textFill="#c665b1">
          <font>
-            <Font size="18.0" />
+            <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="274.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToQuizHard" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #f8ecf8;" text="HARD" textFill="#c665b1">
+      <Button layoutX="349.0" layoutY="496.0" mnemonicParsing="false" onAction="#switchToQuizHard" prefHeight="52.0" prefWidth="270.0" style="-fx-background-color: #f8ecf8;" text="HARD" textFill="#c665b1">
          <font>
-            <Font size="18.0" />
+            <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="552.0" layoutY="488.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
+      <Button layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="BACK" textFill="#b95ea7">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
    </children>

@@ -24,7 +24,7 @@ public class HelloView {
     TextField usernameTextField;
     @FXML
     PasswordField passwordTextField;
-    User currentUser;
+    static User currentUser;
 
     public void login(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         String username = usernameTextField.getText();
@@ -35,7 +35,7 @@ public class HelloView {
         alert.setContentText("Invalid username, please register or recheck your username.");
 
         if (LoginManager.userExists(username)) {
-            this.currentUser = LoginManager.loadUser(username);
+            currentUser = LoginManager.loadUser(username);
             if(currentUser.verifyPassword(password)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/settingsScreen.fxml"));
                 root = loader.load();

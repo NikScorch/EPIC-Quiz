@@ -26,7 +26,7 @@
             </ImageView>
          </children></AnchorPane>
       <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="516.0" prefHeight="10.0" prefWidth="662.0" progress="0.0" />
-      <RadioButton fx:id="optionA" layoutX="43.0" layoutY="235.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="570.0" text="A" textFill="#632d59" wrapText="true">
+      <RadioButton fx:id="optionA" layoutX="43.0" layoutY="235.0" mnemonicParsing="false" onAction="#setOptionA" prefHeight="70.0" prefWidth="570.0" text="A" textFill="#632d59" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -34,17 +34,17 @@
             <ToggleGroup fx:id="answer" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="optionB" layoutX="43.0" layoutY="305.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="570.0" text="B" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionB" layoutX="43.0" layoutY="305.0" mnemonicParsing="false" onAction="#setOptionB" prefHeight="70.0" prefWidth="570.0" text="B" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="optionC" layoutX="43.0" layoutY="375.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="570.0" text="C" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionC" layoutX="43.0" layoutY="375.0" mnemonicParsing="false" onAction="#setOptionC" prefHeight="70.0" prefWidth="570.0" text="C" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="optionD" layoutX="43.0" layoutY="445.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="570.0" text="D" textFill="#632d59" toggleGroup="$answer" wrapText="true">
+      <RadioButton fx:id="optionD" layoutX="43.0" layoutY="445.0" mnemonicParsing="false" onAction="#setOptionD" prefHeight="70.0" prefWidth="570.0" text="D" textFill="#632d59" toggleGroup="$answer" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -53,7 +53,7 @@
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Button fx:id="tempButton" layoutX="556.0" layoutY="469.0" mnemonicParsing="false" onAction="#scoreCounter" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
+      <Button fx:id="tempButton" layoutX="556.0" layoutY="469.0" mnemonicParsing="false" onAction="#scoreCounterReal" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="NEXT" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

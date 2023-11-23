@@ -28,8 +28,8 @@ public class QuizDifficulty {
         stage.setScene(scene);
         stage.show();
         //currentUser.data.questions = QuestionGetter.getAllQuestionsByFilter(quizgame.Difficulty.EASY);
-        //controller.questionDisplay();
-        controller.questionDisplayDifficulty(quizgame.Difficulty.EASY);
+        controller.questionDisplay();
+        //controller.questionDisplayDifficulty(quizgame.Difficulty.EASY);
     }
 
     public void switchToQuizMedium(ActionEvent event) throws IOException {

@@ -32,8 +32,9 @@ public class Quiz {
     private Button tempButton, switchSceneButton;
     double progress;
     static User currentUser;
-    static int score = 0;
+    //public static int score = 0;
     int selectedOption = -1;
+    int answer;
 
     public void switchToScore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/scoreScreen.fxml")));
@@ -151,21 +152,20 @@ public class Quiz {
                     if (count[0] > 0) {
                         increaseProgress();
                     }
-
-                    if (selectedOption != -1) {
-                        questions[count[0]].userAnswer = selectedOption;
-                        int correctAnswer = questions[count[0]].answerIndex;
-                        if (selectedOption == correctAnswer) {
-                            score ++;
+                    if (count[0] != 0) {
+                        if (answer == questions[count[0]- 1].answerIndex) {
+                            User.score++;
+                            System.out.println(User.score);
                         }
                     }
 
-                }
-                if (count[0] == 6) {
-                    switchSceneButton.setVisible(true);
-                    tempButton.setVisible(false);
 
                 }
+                    if (count[0] == 6) {
+                        switchSceneButton.setVisible(true);
+                        tempButton.setVisible(false);
+
+                    }
             }
         });
     }
@@ -194,7 +194,7 @@ public class Quiz {
                     int correctAnswer = currentUser.data.questions[count[0] - 1].answerIndex;
 
                     if (selectedOption == correctAnswer) {
-                        score ++;
+                        User.score ++;
                     }
                 }
 
@@ -228,5 +228,38 @@ public class Quiz {
     public void increaseProgress() {
         progress += 0.167;
         progressBar.setProgress(progress);
+    }
+
+    public boolean setOptionA() {
+        return optionA.isSelected();
+    }
+    public boolean setOptionB() {
+        return optionB.isSelected();
+    }
+    public boolean setOptionC() {
+        return optionC.isSelected();
+    }
+    public boolean setOptionD() {
+        return optionD.isSelected();
+    }
+
+    public void scoreCounterReal(ActionEvent event) {
+        if (setOptionA()) {
+            answer = 0;
+        }
+        else if (setOptionB()) {
+            answer = 1;
+        }
+        else if (setOptionC()) {
+            answer = 2;
+        }
+        else if (setOptionD()) {
+            answer =3;
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(User.score);
     }
 }

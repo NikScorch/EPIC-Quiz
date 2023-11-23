@@ -20,7 +20,7 @@ public class LoginManager {
 
     /** Check if a user has been saved before */
     public static boolean userExists(String username) {
-        File userFile = new File("data/" + username + ".user");
+        File userFile = new File("data/" + username + ".txt");
         if (!userFile.exists()) {
             return false;
         }
@@ -36,10 +36,10 @@ public class LoginManager {
         File[] files = dir.listFiles();
         List<String> users = new ArrayList<String>();
         for (File file : files) {
-            if (!file.getName().endsWith(".user")) {
+            if (!file.getName().endsWith(".txt")) {
                 continue;
             }
-            users.add(file.getName().replace(".user", ""));
+            users.add(file.getName().replace(".txt", ""));
         }
         return (String[]) users.toArray(new String[users.size()]);
     }
@@ -48,7 +48,7 @@ public class LoginManager {
     public static void saveUser(User user) {
         user.saveSession();
         try {
-            FileOutputStream fout = new FileOutputStream("data/" + user.username + ".user");
+            FileOutputStream fout = new FileOutputStream("data/" + user.username + ".txt");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(user);
             oos.close();
@@ -63,13 +63,14 @@ public class LoginManager {
     public static User loadUser(String username) throws NoSuchAlgorithmException {
         User user;
         try {
-            FileInputStream fin = new FileInputStream("data/" + username + ".user");
+            FileInputStream fin = new FileInputStream("data/" + username + ".txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
             user = (User) ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
-            user = new User(null, null);
+            //user = new User(null, null);
+            return null;
         }
         return user;
     }
@@ -86,19 +87,20 @@ public class LoginManager {
 
     // Testing purposes only
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        new LoginManager();
-        User a = new User("debug", "debug_password");
-        LoginManager.saveUser(a);
-        User b = LoginManager.loadUser("debug");
-        System.out.println(b.username);
-        System.out.println(b.password_hash);
+//        new LoginManager();
+//        User a = new User("debug", "debug_password");
+//        LoginManager.saveUser(a);
+//        User b = LoginManager.loadUser("debug");
+//        System.out.println(b.username);
+//        System.out.println(b.password_hash);
+//        System.out.println(Arrays.toString(getUsers()));
+//        User[] users = loadAllUsers();
+//        for (User user: users) {
+//            System.out.println(user.username + "\t" + user.password_hash);
+//        }
+//        Game eA = new Game();
+//        Game eB = new Game();
+//        System.out.println(eA.equals(eB));
         System.out.println(Arrays.toString(getUsers()));
-        User[] users = loadAllUsers();
-        for (User user: users) {
-            System.out.println(user.username + "\t" + user.password_hash);
-        }
-        Game eA = new Game();
-        Game eB = new Game();
-        System.out.println(eA.equals(eB));
     }
 }

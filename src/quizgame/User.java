@@ -11,6 +11,8 @@ public class User implements java.io.Serializable {
     public Game data;
     List<Game> pastGames = new ArrayList<Game>();
     Score lifetimeScore = new Score();
+
+    public static int score =0;
     //Difficulty difficulty = Difficulty.EASY;
 
     public User(String username, String password) throws NoSuchAlgorithmException {
@@ -65,6 +67,13 @@ public class User implements java.io.Serializable {
             }
             this.data = new Game();
         }
+    }
+
+    public int getScore() {
+        return score;
+    }
+    public String getUsername() {
+        return username;
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {

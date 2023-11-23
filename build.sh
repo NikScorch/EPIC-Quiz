@@ -82,11 +82,12 @@ echo "Compiling Java source code"
 # echo "JAVA_SRC: " "$JAVA_SRC"
 # javac -d out/ -sourcepath src $JAVA_SRC --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
 
-for SRC_FILE in $JAVA_SRC; do
-    javac -d out/ -sourcepath src $SRC_FILE --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
-done
+# for SRC_FILE in $JAVA_SRC; do
+#     javac -d out/ -sourcepath src $SRC_FILE --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+# done
 
-# javac -d out/ -sourcepath src src/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+javac -d out/ -sourcepath src src/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
+javac -d out/ -sourcepath src src/*/*/*.java --module-path $JAR_DIR --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls
 
 # File Work
 echo "Completing file tree structure"

@@ -26,6 +26,10 @@ public class Register {
     @FXML
     PasswordField registerPasswordField, reEnterPasswordField;
 
+    /** This controls the registering of users, it creates a new text file fore each registered user. **/
+
+    //calls the register function from the login manager and creates a new user.
+    // it also handles if the passwords entered don't match.
     public void register(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         String username = registerUserTextField.getText();
         String password = registerPasswordField.getText();
@@ -39,7 +43,6 @@ public class Register {
             LoginManager.registerUser(username, password);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/hello-view.fxml"));
             root = loader.load();
-            //Register controller = loader.getController();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -50,6 +53,7 @@ public class Register {
         }
     }
 
+    //switches back to hello main scene after user is registered so they can log in.
     public void switchToHello(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/hello-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

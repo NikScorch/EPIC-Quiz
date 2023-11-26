@@ -58,7 +58,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="switchSceneButton" layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#test" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="SCORE" textFill="#b95ea7">
+      <Button fx:id="switchSceneButton" layoutX="830.0" layoutY="632.0" mnemonicParsing="false" onAction="#switchToScore" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #f8ecf8;" text="SCORE" textFill="#b95ea7">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

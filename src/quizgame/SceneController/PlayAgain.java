@@ -15,9 +15,7 @@ import quizgame.User;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Objects;
-import java.util.List;
 
 public class PlayAgain {
     private Stage stage;
@@ -27,8 +25,14 @@ public class PlayAgain {
     private AnchorPane exitPane;
     @FXML
     private Label firstPlace, secondPlace, thirdPlace;
-    //User currentUser;
 
+
+    /** This scene controller handles the final play again screen where the user can choose to either exit the application,
+     * or play the game again.
+     * this also handles the leader board settings. **/
+
+
+    // if play again is selected, the user is taken back to the settings scene to chose their preferred game mode.
     public void switchToSettings(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/settingsScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -37,6 +41,8 @@ public class PlayAgain {
         stage.show();
     }
 
+
+    //all users are loaded with their saved data, the top 3 scores are loaded and displayed.
     public void leaderBoardSettings() throws NoSuchAlgorithmException {
 
         User[] user = LoginManager.loadAllUsers();
@@ -50,43 +56,13 @@ public class PlayAgain {
         if (user.length > 2) {
             thirdPlace.setText(user[2].getUsername());
         }
-
-//        List<User> allUsers = List.of((LoginManager.loadAllUsers()));
-//        allUsers.sort(Comparator.comparingInt(User::getScore).reversed());
-//        if (!allUsers.isEmpty()) {
-//            User firstPlaceUser = allUsers.get(0);
-//            firstPlace.setText(firstPlaceUser.getUsername() + ": " + firstPlaceUser.getScore());
-//
-//            if (allUsers.size() > 1) {
-//                User secondPlaceUser = allUsers.get(1);
-//                secondPlace.setText(secondPlaceUser.getUsername() + ": " + secondPlaceUser.getScore());
-//            }
-//
-//            if (allUsers.size() > 2) {
-//                User thirdPlaceUser = allUsers.get(2);
-//                thirdPlace.setText(thirdPlaceUser.getUsername() + ": " + thirdPlaceUser.getScore());
-//            }
-//        }
-//        for(User u : LoginManager.loadAllUsers()) {
-//            if(Quiz.score < ) {
-//                firstPlace.setText(first);
-//                secondPlace.setText(second);
-//                thirdPlace.setText(third);
-//            }
-//        }
-
     }
 
-    public void playAgain(ActionEvent event) throws IOException {
-        //HelloView.currentUser.saveSession();
-        switchToSettings(event);
-    }
-
+    // if user decides to exit application, the application ends.
     public void exit(ActionEvent event) {
         stage = (Stage) exitPane.getScene().getWindow();
         stage.close();
         LoginManager.saveUser(HelloView.currentUser);
     }
-
 
 }

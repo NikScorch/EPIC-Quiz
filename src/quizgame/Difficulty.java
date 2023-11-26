@@ -1,6 +1,6 @@
 package quizgame;
 
-/** Indicator for the difficulty of a question */
+/** Indicator for the difficulty of a question **/
 public enum Difficulty {
     EASY,
     MEDIUM,
@@ -10,7 +10,7 @@ public enum Difficulty {
      * Example: myDifficulty = myDifficulty.increaseDifficulty();
      * // Increase the difficulty of the enum, does not exceed HARD.
      * @return New Difficulty Enum
-     */
+     **/
     public Difficulty increaseDifficulty() {
         switch (this) {
             case EASY:
@@ -27,7 +27,7 @@ public enum Difficulty {
      * Example: myDifficulty = myDifficulty.decreaseDifficulty();
      * // Decrease the difficulty of the enum, does not go below EASY.
      * @return New Difficulty Enum
-     */
+     **/
     public Difficulty decreaseDifficulty() {
         switch (this) {
             case EASY:

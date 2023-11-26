@@ -15,6 +15,9 @@ public class QuizTopic {
     private Scene scene;
     private Parent root;
 
+    /** This controls the topic game mode **/
+
+    //if user chooses to go back, switches back to settings.
     public void switchToSettings(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/settingsScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -22,6 +25,8 @@ public class QuizTopic {
         stage.setScene(scene);
         stage.show();
     }
+
+    //switches to the discrete maths topic and calls the quiz controller to display questions.
     public void switchToQuizMaths(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/quizScreen.fxml"));
         root = loader.load();
@@ -32,6 +37,8 @@ public class QuizTopic {
         stage.show();
         controller.questionDisplayTopic(Topic.DISCRETE_MATHS);
     }
+
+    //switches to the computer organization topic and calls the quiz controller to display questions.
     public void switchToQuizCompOrg(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/quizScreen.fxml"));
         root = loader.load();
@@ -43,7 +50,7 @@ public class QuizTopic {
         controller.questionDisplayTopic(Topic.COMP_ORG);
     }
 
-    //when computer science is selected, it switches to the quiz screen and calls the question display method
+    //switches to the computer science topic and calls the quiz controller to display questions.
     public void switchToQuizCompSci(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/quizScreen.fxml"));
         root = loader.load();

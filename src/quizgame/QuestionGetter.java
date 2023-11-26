@@ -1,9 +1,5 @@
 package quizgame;
 
-//import org.apache.commons.csv.CSVFormat;
-//import org.apache.commons.csv.CSVParser;
-//import org.apache.commons.csv.CSVRecord;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,7 +28,6 @@ public class QuestionGetter {
             try {
                 file = new Scanner(new File("data/questions.csv"));
             } catch (FileNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 e1.printStackTrace();
                 return;
@@ -138,23 +133,5 @@ public class QuestionGetter {
     public static Question getRandomQuestionByFilter(Topic topic, Difficulty difficulty) {
         Question[] filterQuestions = getAllQuestionsByFilter(topic, difficulty);
         return filterQuestions[(int) (Math.random() * (filterQuestions.length + 1))];
-    }
-
-    // This main function should never be run in production
-    // It is for debug purposes only
-    public static void main(String[] args) {
-        //specific_subject_random_game(Topic.COMPUTER_SCIENCE);
-        // getRandomQuestion();
-
-        // Question q = new Question("How many legs does a dog have?", new String[]{"2","4","7","5"}, 1, Topic.COMP_ORG, Difficulty.EASY);
-        // q.print();
-
-        // Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
-        // System.out.println(java.util.Arrays.toString(qs));
-        // System.out.println(qs.length);
-            loadQuestions();
-        for (Question q: questions) {
-            q.print();
-        }
     }
 }

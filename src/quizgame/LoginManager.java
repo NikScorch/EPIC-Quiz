@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LoginManager {
@@ -71,7 +70,6 @@ public class LoginManager {
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
-            //user = new User(null, null);
             return null;
         }
         return user;
@@ -86,25 +84,5 @@ public class LoginManager {
             System.out.println(usernames[i]);
         }
         return users;
-    }
-
-    // Testing purposes only
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-//        new LoginManager();
-//        User a = new User("debug", "debug_password");
-//        LoginManager.saveUser(a);
-//        User b = LoginManager.loadUser("debug");
-//        System.out.println(b.username);
-//        System.out.println(b.password_hash);
-//        System.out.println(Arrays.toString(getUsers()));
-//        User[] users = loadAllUsers();
-//        for (User user: users) {
-//            System.out.println(user.username + "\t" + user.password_hash);
-//        }
-//        Game eA = new Game();
-//        Game eB = new Game();
-//        System.out.println(eA.equals(eB));
-        System.out.println(Arrays.toString(loadAllUsers()));
-        System.out.println(Arrays.toString(getUsers()));
     }
 }

@@ -16,8 +16,6 @@ import quizgame.User;
 import java.io.IOException;
 import java.util.Objects;
 
-import static quizgame.QuestionGetter.questions;
-
 public class Quiz {
     private Stage stage;
     private Scene scene;
@@ -32,18 +30,13 @@ public class Quiz {
     private Button tempButton, switchSceneButton;
     double progress;
     static User currentUser;
-    //public static int score = 0;
     int answer;
 
-    public void switchToScore(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource("/quizgame/SceneController/resource/scoreScreen.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    /** This is the main quiz controller, it handles the display of questions, is in charge of calculating the score
+     * and the progress button. **/
 
-    public void test(ActionEvent event) throws IOException {
+    // switches to the score scene once the user has answered all questions.
+    public void switchToScore(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/scoreScreen.fxml"));
         root = loader.load();
         QuizScore controller = loader.getController();
@@ -54,6 +47,9 @@ public class Quiz {
         controller.displayScore();
     }
 
+    //uses back end question getter method to get all questions and display them on the screen.
+    //switches between the next and score button
+    //increases progress and counts score.
     public void questionDisplayDifficulty(quizgame.Difficulty diff) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
@@ -77,7 +73,6 @@ public class Quiz {
                     if (count[0] != 0) {
                         if (answer == questions[count[0]- 1].answerIndex) {
                             User.score++;
-                            System.out.println(User.score);
                         }
                     }
                 }
@@ -89,6 +84,7 @@ public class Quiz {
         });
     }
 
+    // follows the same logic as the previous method expect it displays questions of a certain topic.
     public void questionDisplayTopic(Topic topic) {
         int[] count = {0};
         switchSceneButton.setVisible(false);
@@ -112,7 +108,6 @@ public class Quiz {
                     if (count[0] != 0) {
                         if (answer == questions[count[0]- 1].answerIndex) {
                             User.score++;
-                            System.out.println(User.score);
                         }
                     }
                 }
@@ -124,6 +119,7 @@ public class Quiz {
         });
     }
 
+    // also follows the same logic but displays any random question.
     public void questionDisplayRandom() {
         int[] count = {0};
         switchSceneButton.setVisible(false);
@@ -150,7 +146,6 @@ public class Quiz {
                     if (count[0] != 0) {
                         if (answer == questions[count[0]- 1].answerIndex) {
                             User.score++;
-                            System.out.println(User.score);
                         }
                     }
 
@@ -165,66 +160,13 @@ public class Quiz {
         });
     }
 
-
-    /*public void questionDisplay() {
-        int[] count = { 0 };
-        switchSceneButton.setVisible(false);
-
-        tempButton.setOnAction(e -> {
-            if (! (count[0] == 0)) {
-                questions[count[0] - 1] = QuestionGetter.getRandomQuestion();
-                QuestionGetter.loadQuestions();
-
-                // get selected value and update
-                // do not do this on the first option
-
-
-                if (optionA.isSelected()) { selectedOption = currentUser.data.questions[count[0] - 1].userAnswer = 0;}
-                else if (optionB.isSelected()) { selectedOption = currentUser.data.questions[count[0] - 1].userAnswer = 1; }
-                else if (optionC.isSelected()) { selectedOption = currentUser.data.questions[count[0] - 1].userAnswer = 2; }
-                else { selectedOption = currentUser.data.questions[count[0] - 1].userAnswer = 3; }
-
-                if (selectedOption != -1) {
-                    currentUser.data.questions[count[0] - 1].userAnswer = selectedOption;
-                    int correctAnswer = currentUser.data.questions[count[0] - 1].answerIndex;
-
-                    if (selectedOption == correctAnswer) {
-                        User.score ++;
-                    }
-                }
-
-            }
-            if (count[0] < 6) {
-
-                if (count[0] < currentUser.data.questions.length) {
-
-                    questionField.setText(currentUser.data.questions[count[0]].question);
-
-                    optionA.setText(currentUser.data.questions[count[0]].answers[0]);
-                    optionB.setText(currentUser.data.questions[count[0]].answers[1]);
-                    optionC.setText(currentUser.data.questions[count[0]].answers[2]);
-                    optionD.setText(currentUser.data.questions[count[0]].answers[3]);
-                    count[0]++;
-                    if (count[0] > 0) {
-                        increaseProgress();
-                        //this.currentUser.quizgame.storeQuestion(questions[count[0]]);
-                    }
-                }
-
-            }
-
-            if (count[0] == 6) {
-                switchSceneButton.setVisible(true);
-                tempButton.setVisible(false);
-            }
-
-        });
-    }*/
+    //increase progress bar method, since there are 6 questions it increases by 0.167.
     public void increaseProgress() {
         progress += 0.167;
         progressBar.setProgress(progress);
     }
 
+    // methods for when each option is selected, returns boolean.
     public boolean setOptionA() {
         return optionA.isSelected();
     }
@@ -238,6 +180,7 @@ public class Quiz {
         return optionD.isSelected();
     }
 
+    //checks for which option is selected when button is clicked on.
     public void scoreCounterReal(ActionEvent event) {
         if (setOptionA()) {
             answer = 0;
@@ -254,6 +197,7 @@ public class Quiz {
 
     }
 
+    // testing purposes only.
     public static void main(String[] args) {
         System.out.println(User.score);
     }

@@ -26,6 +26,13 @@ public class HelloView {
     PasswordField passwordTextField;
     static User currentUser;
 
+
+    /** Each scene requires a controller, the classes in the SceneController class are all connected to each scene designed.
+     * Each of these controllers control the logic and instructions which the scene follows. **/
+
+
+    // this is the login method that calls the login manager and stores the user details.
+    // it also handles wrong input and displays an error message accordingly.
     public void login(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
@@ -53,6 +60,7 @@ public class HelloView {
         }
     }
 
+    // if the user decides to register, then it switches to the register scene.
     public void switchToRegister(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/quizgame/SceneController/resource/registerScreen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -20,6 +20,9 @@ public class QuizScore {
     @FXML
     private Label scoreLabel;
 
+    /** This controller displays the score scene **/
+
+    //goes to the play again scene and calls the leaderboard settings.
     public void switchToPlayagain(ActionEvent event) throws IOException, NoSuchAlgorithmException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quizgame/SceneController/resource/playagainScreen.fxml"));
         root = loader.load();
@@ -30,8 +33,10 @@ public class QuizScore {
         stage.show();
         controller.leaderBoardSettings();
     }
+
+    //displays the score of the user.
     public void displayScore() {
-        scoreLabel.setText(String.valueOf(User.score));
+        scoreLabel.setText(User.score + "/6");
     }
 
 }

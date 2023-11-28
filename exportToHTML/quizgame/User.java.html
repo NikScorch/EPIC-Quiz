@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>User.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #5f826b; font-style: italic;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+User.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">quizgame</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">MessageDigest</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">security</span><span class="s2">.</span><span class="s1">NoSuchAlgorithmException</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">User </span><span class="s0">implements </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">Serializable </span><span class="s2">{</span>
+    <span class="s1">String username</span><span class="s2">;</span>
+    <span class="s1">String password_hash</span><span class="s2">;</span>
+
+    <span class="s0">public static int </span><span class="s1">score </span><span class="s2">=</span><span class="s3">0</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">User</span><span class="s2">(</span><span class="s1">String username</span><span class="s2">, </span><span class="s1">String password</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">username </span><span class="s2">= </span><span class="s1">username</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">password_hash </span><span class="s2">= </span><span class="s1">hashPassword</span><span class="s2">(</span><span class="s1">password</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s4">/** Check if an entered password matches the stored password */</span>
+    <span class="s0">public boolean </span><span class="s1">verifyPassword</span><span class="s2">(</span><span class="s1">String enteredPassword</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">enteredPassword</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">hashPassword</span><span class="s2">(</span><span class="s1">enteredPassword</span><span class="s2">).</span><span class="s1">equals</span><span class="s2">(</span><span class="s0">this</span><span class="s2">.</span><span class="s1">password_hash</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s4">/** Create a password hash */</span>
+    <span class="s0">private static </span><span class="s1">String hashPassword</span><span class="s2">(</span><span class="s1">String enteredPassword</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">MessageDigest digest </span><span class="s2">= </span><span class="s1">MessageDigest</span><span class="s2">.</span><span class="s1">getInstance</span><span class="s2">(</span><span class="s5">&quot;SHA-256&quot;</span><span class="s2">);</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">passwordBytes </span><span class="s2">= </span><span class="s1">enteredPassword</span><span class="s2">.</span><span class="s1">getBytes</span><span class="s2">();</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">hashBytes </span><span class="s2">= </span><span class="s1">digest</span><span class="s2">.</span><span class="s1">digest</span><span class="s2">(</span><span class="s1">passwordBytes</span><span class="s2">);</span>
+        <span class="s1">StringBuilder sb </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringBuilder</span><span class="s2">();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">byte </span><span class="s1">b </span><span class="s2">: </span><span class="s1">hashBytes</span><span class="s2">) {</span>
+            <span class="s1">sb</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s5">&quot;%02x&quot;</span><span class="s2">, </span><span class="s1">b</span><span class="s2">));</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">sb</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">getScore</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">score</span><span class="s2">;</span>
+    <span class="s2">}</span>
+    <span class="s0">public </span><span class="s1">String getUsername</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">username</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">NoSuchAlgorithmException </span><span class="s2">{</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Entered password: &quot; </span><span class="s2">+ </span><span class="s5">&quot;michellePassword </span><span class="s0">\n</span><span class="s5">&quot; </span><span class="s2">+</span>
+                <span class="s5">&quot;encrypted password : &quot;</span><span class="s2">+ </span><span class="s1">hashPassword</span><span class="s2">(</span><span class="s5">&quot;michellePassword&quot;</span><span class="s2">));</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>QuestionGetter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+.s6 { color: #5f826b; font-style: italic;}
+.s7 { color: #67a37c; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+QuestionGetter.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">quizgame</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">QuestionGetter </span><span class="s2">{</span>
+    <span class="s3">/* 
+     * Make an array of Question classes 
+     * When defining a new entry, the format is as follows: 
+     * new Question(&quot;How many legs does a dog have?&quot;, 
+     *               new String[]{&quot;2&quot;,&quot;4&quot;,&quot;7&quot;,&quot;5&quot;}, 1, 
+     *               Topic.COMP_ORG, Difficulty.EASY), 
+     */</span>
+    <span class="s0">public static </span><span class="s1">Question</span><span class="s2">[] </span><span class="s1">questions</span><span class="s2">;</span>
+
+    <span class="s0">public static void </span><span class="s1">loadQuestions</span><span class="s2">() {</span>
+        <span class="s1">loadQuestions</span><span class="s2">(</span><span class="s4">&quot;data/questions.csv&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s0">public static void </span><span class="s1">loadQuestions</span><span class="s2">(</span><span class="s1">String fileName</span><span class="s2">) {</span>
+        <span class="s1">Scanner file</span><span class="s2">;</span>
+
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">file </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">fileName</span><span class="s2">));</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">file </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s4">&quot;data/questions.csv&quot;</span><span class="s2">));</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e1</span><span class="s2">) {</span>
+                <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s1">e1</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s1">file</span><span class="s2">.</span><span class="s1">useDelimiter</span><span class="s2">(</span><span class="s4">&quot;,&quot;</span><span class="s2">);</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s5">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s5">8</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">();        </span><span class="s3">// Remove file header</span>
+        <span class="s2">}</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Question</span><span class="s2">&gt; </span><span class="s1">data </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Question</span><span class="s2">&gt;();</span>
+
+        <span class="s0">while </span><span class="s2">(</span><span class="s1">file</span><span class="s2">.</span><span class="s1">hasNext</span><span class="s2">()) {</span>
+            <span class="s3">// This line converts each line in the csv file into question classes</span>
+            <span class="s1">data</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Question</span><span class="s2">(</span>
+                <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">().</span><span class="s1">substring</span><span class="s2">(</span><span class="s5">1</span><span class="s2">), </span>
+                <span class="s0">new </span><span class="s1">String</span><span class="s2">[]{</span>
+                    <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">(), </span>
+                    <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">(), </span>
+                    <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">(), </span>
+                    <span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">()</span>
+                <span class="s2">}, </span>
+                <span class="s1">Integer</span><span class="s2">.</span><span class="s1">parseInt</span><span class="s2">(</span><span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">()), </span>
+                <span class="s1">Topic</span><span class="s2">.</span><span class="s1">values</span><span class="s2">()[</span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">parseInt</span><span class="s2">(</span><span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">())], </span>
+                <span class="s1">Difficulty</span><span class="s2">.</span><span class="s1">values</span><span class="s2">()[</span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">parseInt</span><span class="s2">(</span><span class="s1">file</span><span class="s2">.</span><span class="s1">next</span><span class="s2">())])</span>
+            <span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s1">questions </span><span class="s2">= </span><span class="s1">data</span><span class="s2">.</span><span class="s1">toArray</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Question</span><span class="s2">[</span><span class="s1">data</span><span class="s2">.</span><span class="s1">size</span><span class="s2">()]);</span>
+    <span class="s2">}</span>
+
+    <span class="s6">/**</span>
+     <span class="s6">* Retrieve an array of all available questions</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Question array of all loaded questions</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question</span><span class="s2">[] </span><span class="s1">getAllQuestions</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">questions</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s6">/**</span>
+     <span class="s6">* Get all questions that match the given parameters</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">difficulty Find all questions that match the given difficulty</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Array of Question objects from the question bank</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question</span><span class="s2">[] </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s1">Topic topic</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s1">topic</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Get all questions that match the given parameters</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">difficulty Find all questions that match the given difficulty</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Array of Question objects from the question bank</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question</span><span class="s2">[] </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s1">Difficulty difficulty</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s0">null</span><span class="s2">, </span><span class="s1">difficulty</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Get all questions that match the given parameters</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">topic Find all questions that match the given subject</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">difficulty Filter for only a specific difficulty of those subject questions</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Array of Question objects from the question bank</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question</span><span class="s2">[] </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s1">Topic topic</span><span class="s2">, </span><span class="s1">Difficulty difficulty</span><span class="s2">) {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Question</span><span class="s2">&gt; </span><span class="s1">filteredQuestions </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Question</span><span class="s2">&gt;();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Question q</span><span class="s2">: </span><span class="s1">questions</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">((</span><span class="s1">q</span><span class="s2">.</span><span class="s1">topic </span><span class="s2">== </span><span class="s1">topic </span><span class="s2">|| </span><span class="s1">topic </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) &amp;&amp; (</span><span class="s1">q</span><span class="s2">.</span><span class="s1">difficulty </span><span class="s2">== </span><span class="s1">difficulty </span><span class="s2">|| </span><span class="s1">difficulty </span><span class="s2">== </span><span class="s0">null</span><span class="s2">)) {</span>
+                <span class="s1">filteredQuestions</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">q</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s3">// Convert ArrayList to Array</span>
+        <span class="s1">Question</span><span class="s2">[] </span><span class="s1">filteredQuestionsArray </span><span class="s2">= </span><span class="s1">filteredQuestions</span><span class="s2">.</span><span class="s1">toArray</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Question</span><span class="s2">[</span><span class="s1">filteredQuestions</span><span class="s2">.</span><span class="s1">size</span><span class="s2">()]);</span>
+        <span class="s0">return </span><span class="s1">filteredQuestionsArray</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s6">/**</span>
+     <span class="s6">* Get single random question from the entire question bank</span>
+     <span class="s6">* </span><span class="s7">@return</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question getRandomQuestion</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">questions</span><span class="s2">[(</span><span class="s0">int</span><span class="s2">) (</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">random</span><span class="s2">() * </span><span class="s1">questions</span><span class="s2">.</span><span class="s1">length</span><span class="s2">)];</span>
+    <span class="s2">}</span>
+
+    <span class="s6">/**</span>
+     <span class="s6">* Method filters and returns all questions within given topic</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">topic Subject enum to filter by</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Returns a random Question given a filter</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question getRandomQuestionByFilter</span><span class="s2">(</span><span class="s1">Topic topic</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">getRandomQuestionByFilter</span><span class="s2">(</span><span class="s1">topic</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Method filters and returns all questions within given difficulty </span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">difficulty Difficulty enum to filter by</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Returns a random Question given a filter</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question getRandomQuestionByFilter</span><span class="s2">(</span><span class="s1">Difficulty difficulty</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">getRandomQuestionByFilter</span><span class="s2">(</span><span class="s0">null</span><span class="s2">, </span><span class="s1">difficulty</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s6">/**</span>
+     <span class="s6">* Method filters and returns all questions within given requirements</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">topic Subject enum to filter by</span>
+     <span class="s6">* </span><span class="s7">@param </span><span class="s6">difficulty Difficulty enum to filter by</span>
+     <span class="s6">* </span><span class="s7">@return </span><span class="s6">Returns a random Question given a filter</span>
+     <span class="s6">*/</span>
+    <span class="s0">public static </span><span class="s1">Question getRandomQuestionByFilter</span><span class="s2">(</span><span class="s1">Topic topic</span><span class="s2">, </span><span class="s1">Difficulty difficulty</span><span class="s2">) {</span>
+        <span class="s1">Question</span><span class="s2">[] </span><span class="s1">filterQuestions </span><span class="s2">= </span><span class="s1">getAllQuestionsByFilter</span><span class="s2">(</span><span class="s1">topic</span><span class="s2">, </span><span class="s1">difficulty</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">filterQuestions</span><span class="s2">[(</span><span class="s0">int</span><span class="s2">) (</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">random</span><span class="s2">() * (</span><span class="s1">filterQuestions</span><span class="s2">.</span><span class="s1">length </span><span class="s2">+ </span><span class="s5">1</span><span class="s2">))];</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">quizgame</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileOutputStream</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">InputStream</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Main </span><span class="s2">{</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">loadDll</span><span class="s2">();</span>
+        <span class="s1">extractFile</span><span class="s2">(</span><span class="s3">&quot;/data/questions.csv&quot;</span><span class="s2">);</span>
+        <span class="s1">quizgame</span><span class="s2">.</span><span class="s1">Gui</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s1">args</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">loadDll</span><span class="s2">() {</span>
+        <span class="s4">// List of DLL files to load</span>
+        <span class="s1">String</span><span class="s2">[] </span><span class="s1">dllFiles </span><span class="s2">= {</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-console-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-console-l1-2-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-datetime-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-debug-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-errorhandling-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-file-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-file-l1-2-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-file-l2-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-handle-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-heap-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-interlocked-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-libraryloader-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-localization-l1-2-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-memory-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-namedpipe-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-processenvironment-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-processthreads-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-processthreads-l1-1-1.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-profile-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-rtlsupport-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-string-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-synch-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-synch-l1-2-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-sysinfo-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-timezone-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-core-util-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-conio-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-convert-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-environment-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-filesystem-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-heap-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-locale-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-math-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-multibyte-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-private-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-process-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-runtime-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-stdio-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-string-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-time-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/api-ms-win-crt-utility-l1-1-0.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/decora_sse.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/glass.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/glib-lite.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/gstreamer-lite.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/javafx_font.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/javafx_iio.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/jfxmedia.dll&quot;</span><span class="s2">,</span>
+<span class="s4">//            &quot;/bin/jfxwebkit.dll&quot;,</span>
+            <span class="s3">&quot;/bin/msvcp140.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/msvcp140_1.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/msvcp140_2.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/prism_common.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/prism_d3d.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/prism_sw.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/ucrtbase.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/vcruntime140.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/vcruntime140_1.dll&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/bin/fxplugins.dll&quot;</span><span class="s2">,</span>
+        <span class="s2">};</span>
+        <span class="s1">String</span><span class="s2">[] </span><span class="s1">soFiles </span><span class="s2">= {</span>
+            <span class="s3">&quot;/lib/libprism_es2.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libprism_sw.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libgstreamer-lite.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libdecora_sse.so&quot;</span><span class="s2">,</span>
+            <span class="s4">// &quot;/lib/libglass.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libglassgtk3.so&quot;,</span>
+            <span class="s3">&quot;/lib/libprism_common.so&quot;</span><span class="s2">,</span>
+            <span class="s4">// &quot;/lib/libavplugin-54.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libavplugin-56.so&quot;,</span>
+            <span class="s4">//&quot;/lib/libavplugin-57.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libavplugin-ffmpeg-56.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libavplugin-ffmpeg-57.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libavplugin-ffmpeg-58.so&quot;,</span>
+            <span class="s4">// &quot;/lib/libavplugin-ffmpeg-59.so&quot;,</span>
+            <span class="s3">&quot;/lib/libjavafx_font.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libjavafx_font_freetype.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libjavafx_font_pango.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libjavafx_iio.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libjfxmedia.so&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;/lib/libfxplugins.so&quot;</span><span class="s2">,</span>
+<span class="s4">//            &quot;/lib/libjfxwebkit.so&quot;,</span>
+        <span class="s2">};</span>
+        <span class="s4">//System.out.println(System.getProperty(&quot;java.library.path&quot;));</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;os.name&quot;</span><span class="s2">).</span><span class="s1">split</span><span class="s2">(</span><span class="s3">&quot; &quot;</span><span class="s2">)[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;Windows&quot;</span><span class="s2">)) {</span>
+            <span class="s4">// Add dll path to java library path same as `export PATH=$PATH:/new/path/here` on linux</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">setProperty</span><span class="s2">(</span><span class="s3">&quot;java.library.path&quot;</span><span class="s2">, </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.library.path&quot;</span><span class="s2">) + </span><span class="s3">&quot;;&quot; </span><span class="s2">+ </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">) + </span><span class="s3">&quot;/bin&quot;</span><span class="s2">);</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s1">String dllFile </span><span class="s2">: </span><span class="s1">dllFiles</span><span class="s2">) {</span>
+                <span class="s1">extractFile</span><span class="s2">(</span><span class="s1">dllFile</span><span class="s2">, </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">));</span>
+    
+                <span class="s4">// Load the DLL</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Loading dll &quot; </span><span class="s2">+ </span><span class="s1">dllFile</span><span class="s2">);</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">) + </span><span class="s1">dllFile</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;os.name&quot;</span><span class="s2">).</span><span class="s1">split</span><span class="s2">(</span><span class="s3">&quot; &quot;</span><span class="s2">)[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;Linux&quot;</span><span class="s2">)) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">setProperty</span><span class="s2">(</span><span class="s3">&quot;java.library.path&quot;</span><span class="s2">, </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.library.path&quot;</span><span class="s2">) + </span><span class="s3">&quot;;&quot; </span><span class="s2">+ </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">) + </span><span class="s3">&quot;/lib&quot;</span><span class="s2">);</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s1">String soFile</span><span class="s2">: </span><span class="s1">soFiles</span><span class="s2">) {</span>
+                <span class="s1">extractFile</span><span class="s2">(</span><span class="s1">soFile</span><span class="s2">, </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">));</span>
+    
+                <span class="s4">// Load the DLL</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Loading &quot; </span><span class="s2">+ </span><span class="s1">soFile</span><span class="s2">);</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;java.io.tmpdir&quot;</span><span class="s2">) + </span><span class="s1">soFile</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">extractFile</span><span class="s2">(</span><span class="s1">String fileToExtract</span><span class="s2">) {</span>
+        <span class="s1">extractFile</span><span class="s2">(</span><span class="s1">fileToExtract</span><span class="s2">, </span><span class="s3">&quot;.&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s0">public static void </span><span class="s1">extractFile</span><span class="s2">(</span><span class="s1">String fileToExtract</span><span class="s2">, </span><span class="s1">String outputDirectory</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">InputStream fileInputStream </span><span class="s2">= </span><span class="s1">Main</span><span class="s2">.</span><span class="s0">class</span><span class="s2">.</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s1">fileToExtract</span><span class="s2">);</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">fileInputStream </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s4">//File outputFile = new File(outputDirectory, new File(fileToExtract).getName());</span>
+                <span class="s1">File outputFile </span><span class="s2">= </span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">outputDirectory </span><span class="s2">+ </span><span class="s1">fileToExtract</span><span class="s2">);</span>
+
+                <span class="s4">// Ensure the parent directory exists</span>
+                <span class="s1">File parentDir </span><span class="s2">= </span><span class="s1">outputFile</span><span class="s2">.</span><span class="s1">getParentFile</span><span class="s2">();</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">parentDir </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s1">parentDir</span><span class="s2">.</span><span class="s1">mkdirs</span><span class="s2">();</span>
+                <span class="s2">}</span>
+
+                <span class="s0">try </span><span class="s2">(</span><span class="s1">FileOutputStream fos </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FileOutputStream</span><span class="s2">(</span><span class="s1">outputFile</span><span class="s2">)) {</span>
+                    <span class="s0">byte</span><span class="s2">[] </span><span class="s1">buffer </span><span class="s2">= </span><span class="s0">new byte</span><span class="s2">[</span><span class="s5">1024</span><span class="s2">];</span>
+                    <span class="s0">int </span><span class="s1">bytesRead</span><span class="s2">;</span>
+
+                    <span class="s0">while </span><span class="s2">((</span><span class="s1">bytesRead </span><span class="s2">= </span><span class="s1">fileInputStream</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">buffer</span><span class="s2">)) != -</span><span class="s5">1</span><span class="s2">) {</span>
+                        <span class="s1">fos</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s1">buffer</span><span class="s2">, </span><span class="s5">0</span><span class="s2">, </span><span class="s1">bytesRead</span><span class="s2">);</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s0">throw new </span><span class="s1">IOException</span><span class="s2">(</span><span class="s3">&quot;File &quot; </span><span class="s2">+ </span><span class="s1">fileToExtract </span><span class="s2">+ </span><span class="s3">&quot; not found in the JAR file.&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Question.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #67a37c; font-style: italic;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Question.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">quizgame</span><span class="s2">;</span>
+
+<span class="s3">/**</span>
+ <span class="s3">* Stores all relavant data regarding a question in a single object</span>
+ <span class="s3">*/</span>
+<span class="s0">public class </span><span class="s1">Question </span><span class="s2">{</span>
+    <span class="s0">public </span><span class="s1">String question</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">String</span><span class="s2">[] </span><span class="s1">answers</span><span class="s2">;</span>
+    <span class="s0">public int </span><span class="s1">userAnswer</span><span class="s2">;</span>
+    <span class="s0">public int </span><span class="s1">answerIndex</span><span class="s2">;</span>
+    <span class="s1">Topic topic</span><span class="s2">;</span>
+    <span class="s1">Difficulty difficulty</span><span class="s2">;</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* </span><span class="s4">@param </span><span class="s3">question Question given to the user</span>
+     <span class="s3">* </span><span class="s4">@param </span><span class="s3">answers All multiple choice answers to the given question</span>
+     <span class="s3">* </span><span class="s4">@param </span><span class="s3">correctAnswerIndex The position of the correct answer in the previous argument</span>
+     <span class="s3">* </span><span class="s4">@param </span><span class="s3">topic The topic the question fits into</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Question</span><span class="s2">(</span><span class="s1">String question</span><span class="s2">, </span><span class="s1">String</span><span class="s2">[] </span><span class="s1">answers</span><span class="s2">, </span><span class="s0">int </span><span class="s1">correctAnswerIndex</span><span class="s2">, </span><span class="s1">Topic topic</span><span class="s2">, </span><span class="s1">Difficulty difficulty</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">question </span><span class="s2">= </span><span class="s1">question</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">answers </span><span class="s2">= </span><span class="s1">answers</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">answerIndex </span><span class="s2">= </span><span class="s1">correctAnswerIndex</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">topic </span><span class="s2">= </span><span class="s1">topic</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">difficulty </span><span class="s2">= </span><span class="s1">difficulty</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">print</span><span class="s2">() {</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s0">this</span><span class="s2">.</span><span class="s1">question </span><span class="s2">+ </span><span class="s5">&quot;</span><span class="s0">\t\t</span><span class="s5">&quot; </span><span class="s2">+ </span><span class="s0">this</span><span class="s2">.</span><span class="s1">answers</span><span class="s2">[</span><span class="s0">this</span><span class="s2">.</span><span class="s1">answerIndex</span><span class="s2">] + </span><span class="s5">&quot;</span><span class="s0">\t\t</span><span class="s5">Topic &quot; </span><span class="s2">+ </span><span class="s0">this</span><span class="s2">.</span><span class="s1">topic </span><span class="s2">+ </span><span class="s5">&quot;</span><span class="s0">\t\t</span><span class="s5">Difficulty &quot; </span><span class="s2">+ </span><span class="s0">this</span><span class="s2">.</span><span class="s1">difficulty</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

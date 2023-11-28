@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Difficulty.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #67a37c; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Difficulty.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">quizgame</span><span class="s2">;</span>
+
+<span class="s3">/** Indicator for the difficulty of a question **/</span>
+<span class="s0">public enum </span><span class="s1">Difficulty </span><span class="s2">{</span>
+    <span class="s1">EASY</span><span class="s2">,</span>
+    <span class="s1">MEDIUM</span><span class="s2">,</span>
+    <span class="s1">HARD</span><span class="s2">;</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Example: myDifficulty = myDifficulty.increaseDifficulty();</span>
+     <span class="s3">* // Increase the difficulty of the enum, does not exceed HARD.</span>
+     <span class="s3">* </span><span class="s4">@return </span><span class="s3">New Difficulty Enum</span>
+     <span class="s3">**/</span>
+    <span class="s0">public </span><span class="s1">Difficulty increaseDifficulty</span><span class="s2">() {</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s0">this</span><span class="s2">) {</span>
+            <span class="s0">case </span><span class="s1">EASY</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">MEDIUM</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s1">MEDIUM</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">HARD</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s1">HARD</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">HARD</span><span class="s2">;</span>
+            <span class="s0">default</span><span class="s2">:</span>
+                <span class="s0">throw new </span><span class="s1">IllegalStateException</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s3">/**</span>
+     <span class="s3">* Example: myDifficulty = myDifficulty.decreaseDifficulty();</span>
+     <span class="s3">* // Decrease the difficulty of the enum, does not go below EASY.</span>
+     <span class="s3">* </span><span class="s4">@return </span><span class="s3">New Difficulty Enum</span>
+     <span class="s3">**/</span>
+    <span class="s0">public </span><span class="s1">Difficulty decreaseDifficulty</span><span class="s2">() {</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s0">this</span><span class="s2">) {</span>
+            <span class="s0">case </span><span class="s1">EASY</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">EASY</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s1">MEDIUM</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">EASY</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s1">HARD</span><span class="s2">:</span>
+                <span class="s0">return </span><span class="s1">MEDIUM</span><span class="s2">;</span>
+            <span class="s0">default</span><span class="s2">:</span>
+                <span class="s0">throw new </span><span class="s1">IllegalStateException</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -20,7 +20,7 @@
             <Font name="Consolas" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="subject" layoutX="204.0" layoutY="331.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="SUBJECT" textFill="#c665b1">
+      <Button fx:id="subject" layoutX="204.0" layoutY="312.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="SUBJECT" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>
@@ -40,7 +40,12 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="random" layoutX="204.0" layoutY="431.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+      <Button fx:id="random" layoutX="204.0" layoutY="390.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RANDOM" textFill="#c665b1">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="rising" layoutX="205.0" layoutY="462.0" mnemonicParsing="false" onAction="#pageSelector" prefHeight="52.0" prefWidth="282.0" style="-fx-background-color: #f8ecf8;" text="RISING DIFFICULTY" textFill="#c665b1">
          <font>
             <Font size="25.0" />
          </font>

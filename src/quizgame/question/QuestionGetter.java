@@ -75,7 +75,7 @@ public class QuestionGetter {
      *                Topic Enums
      * @return All questions that match given filters
      */
-    public static Question[] getAllQuestionsByFilter(Filter... filters) {
+    public static Question[] getAllQuestions(Filter... filters) {
         // This seems very inefficient
         // Go through every question, if one of the filters doesn't match the question,
         // remove the question
@@ -110,8 +110,8 @@ public class QuestionGetter {
      *                Topic Enums
      * @return Single random Question that match all given filters
      */
-    public static Question getRandomQuestionByFilter(Filter... filters) {
-        Question[] filterQuestions = getAllQuestionsByFilter(filters);
+    public static Question getRandomQuestion(Filter... filters) {
+        Question[] filterQuestions = getAllQuestions(filters);
         return filterQuestions[(int) (Math.random() * (filterQuestions.length))];
     }
 
@@ -125,7 +125,7 @@ public class QuestionGetter {
         // String[]{"2","4","7","5"}, 1, Topic.COMP_ORG, Difficulty.EASY);
         // q.print();
 
-        // Question[] qs = getAllQuestionsByFilter(Topic.COMPUTER_SCIENCE);
+        // Question[] qs = getAllQuestions(Topic.COMPUTER_SCIENCE);
         // System.out.println(java.util.Arrays.toString(qs));
         // System.out.println(qs.length);
         loadQuestions();
@@ -134,7 +134,7 @@ public class QuestionGetter {
         // }
         Filter f = Difficulty.EASY;
         Filter f1 = Topic.COMPUTER_SCIENCE;
-        Question[] qs = getAllQuestionsByFilter(f, f1);
+        Question[] qs = getAllQuestions(f, f1);
         for (Question q : qs) {
             System.out.println(q.question.substring(0, 10) + "...\t" + q.topic + "\t" + q.difficulty);
         }

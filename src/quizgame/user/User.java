@@ -44,7 +44,7 @@ public class User implements java.io.Serializable {
     public void saveSession() {
         // Save user session and rest session
         // Do not accept blank game data *ever*
-        if (this.data.questions[0] != null && this.data.questions != null) {
+        if (this.data.questions != null && this.data.questions[this.data.questions.length - 1] != null) {
             try {
                 this.pastGames.add(this.data.clone());
             } catch (CloneNotSupportedException e) {

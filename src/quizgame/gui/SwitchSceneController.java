@@ -45,18 +45,6 @@ public class SwitchSceneController implements Initializable {
     double progress;
     static User currentUser;
 
-    //switches to the score screen
-    public void switchToScore(ActionEvent event) throws IOException {
-        // TODO: if you ever wanted to fix proper spagetti code well now is your chance buckaroo
-        // have at yee
-        if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 0; }
-        else if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 1; }
-        else if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 2; }
-        else { currentUser.data.questions[5].userAnswer = 3; }
-
-        loadScene(event, "/quizgame/resource/scoreScreen.fxml");
-    }
-
     // Infer what button what selected and change the scene accordingly
     public void pageSelector(ActionEvent event) throws IOException {
         pageSelector(event, null);
@@ -106,6 +94,18 @@ public class SwitchSceneController implements Initializable {
             case "random":
                 loadQuizScene(event);
                 break;
+            case "rising":
+                SwitchSceneController tmpcontroller = loadScene(event, "/quizgame/resource/quizScreen.fxml");
+
+                int k = 0;
+                for (Filter filter: new Filter[]{Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD}) {
+                    for (int j = 0; j < 2; j++) {
+                        currentUser.data.questions[k] = QuestionGetter.getRandomQuestion(filter);
+                        k++;
+                    }
+                }
+                tmpcontroller.questionDisplay();
+                break;
             default:
                 System.out.println("Id not found" + id);
                 break;
@@ -128,12 +128,13 @@ public class SwitchSceneController implements Initializable {
     }
     public void loadQuizScene(ActionEvent event, Filter filter) throws IOException {
         SwitchSceneController controller = loadScene(event, "/quizgame/resource/quizScreen.fxml");
+        // Get questions
         for (int i = 0; i < currentUser.data.questions.length; i++) {
             Question new_Question;
             if (filter == null) {
                 new_Question = QuestionGetter.getRandomQuestion();
             } else {
-                new_Question = QuestionGetter.getRandomQuestionByFilter(filter);
+                new_Question = QuestionGetter.getRandomQuestion(filter);
             }
             // Avoid duplicates, no need to check on first question
             if (i != 0 && new_Question.question.equals(currentUser.data.questions[i - 1].question)) {
@@ -162,11 +163,38 @@ public class SwitchSceneController implements Initializable {
     //this is to increase the progressbar
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(url.toString());
     }
 
     public void increaseProgress() {
         progress += 0.167;
         progressBar.setProgress(progress);
+    }
+
+    public void selectAnswer(ActionEvent event, Question q) {
+        if (optionA.isSelected()) {
+            q.userAnswer = 0;
+        } 
+        else if (optionB.isSelected()) {
+            q.userAnswer = 1;
+        } 
+        else if (optionC.isSelected()) {
+            q.userAnswer = 2;
+        } 
+        else if (optionD.isSelected()) {
+            q.userAnswer = 3;
+        }
+    }
+    
+    public void showQuestion(Question q) {
+        questionField.setText(q.question);
+        optionA.setText(q.answers[0]);
+        optionB.setText(q.answers[1]);
+        optionC.setText(q.answers[2]);
+        optionD.setText(q.answers[3]);
+    }
+
+    public void nextQuestion() {
     }
 
     public void questionDisplay() {
@@ -183,30 +211,38 @@ public class SwitchSceneController implements Initializable {
                 else { currentUser.data.questions[count[0] - 1].userAnswer = 3; }
             }
             if (count[0] < 6) {
-
                 if (count[0] < currentUser.data.questions.length) {
-
                     questionField.setText(currentUser.data.questions[count[0]].question);
-
                     optionA.setText(currentUser.data.questions[count[0]].answers[0]);
                     optionB.setText(currentUser.data.questions[count[0]].answers[1]);
                     optionC.setText(currentUser.data.questions[count[0]].answers[2]);
                     optionD.setText(currentUser.data.questions[count[0]].answers[3]);
+                    
                     count[0]++;
+
                     if (count[0] > 0) {
                         increaseProgress();
-                        // this.currentUser.storeQuestion(questions[count[0]]);
                     }
                 }
-
             }
 
             if (count[0] == 6) {
-                switchSceneButton.setVisible(true);
+                switchSceneButton.setVisible(true); // runs "switchToScore() on press"
                 tempButton.setVisible(false);
             }
 
         });
+    }
+    //switches to the score screen
+    public void switchToScore(ActionEvent event) throws IOException {
+        // TODO: if you ever wanted to fix proper spagetti code well now is your chance buckaroo
+        // have at yee
+        if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 0; }
+        else if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 1; }
+        else if (optionA.isSelected()) { currentUser.data.questions[5].userAnswer = 2; }
+        else { currentUser.data.questions[5].userAnswer = 3; }
+
+        loadScene(event, "/quizgame/resource/scoreScreen.fxml");
     }
 
     public void login(ActionEvent event) throws IOException {
